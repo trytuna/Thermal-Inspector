@@ -1,0 +1,72 @@
+# XcodeGen project definition.
+# Generate the Xcode project with:  xcodegen generate
+name: ThermalInspector
+
+options:
+  bundleIdPrefix: local.thermalinspector
+  deploymentTarget:
+    macOS: "15.0"
+  createIntermediateGroups: true
+  # English is the source language; translations live in Resources/Localizable.xcstrings.
+  developmentLanguage: en
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    # Local ad-hoc signing – no Apple developer account needed.
+    CODE_SIGN_IDENTITY: "-"
+    CODE_SIGN_STYLE: Manual
+    DEVELOPMENT_TEAM: ""
+    # The per-pixel image processing is ~3x too slow for 25 fps without
+    # optimization, so Debug builds are optimized as well.
+    SWIFT_OPTIMIZATION_LEVEL: "-O"
+
+targets:
+  ThermalInspector:
+    type: application
+    platform: macOS
+    sources:
+      - path: ThermalInspector
+    settings:
+      base:
+        PRODUCT_NAME: Thermal Inspector
+        PRODUCT_BUNDLE_IDENTIFIER: local.thermalinspector.app
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Thermal Inspector
+        INFOPLIST_KEY_LSApplicationCategoryType: public.app-category.developer-tools
+        INFOPLIST_KEY_NSHumanReadableCopyright: ""
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        SWIFT_EMIT_LOC_STRINGS: YES
+        LOCALIZATION_PREFERS_STRING_CATALOGS: YES
+        CODE_SIGN_ENTITLEMENTS: ThermalInspector/ThermalInspector.entitlements
+        # The app talks to the camera directly over USB (IOUSBHost). It is not
+        # sandboxed so it can open the device and write to ~/Pictures freely.
+        ENABLE_APP_SANDBOX: NO
+        ENABLE_HARDENED_RUNTIME: NO
+    dependencies:
+      - sdk: IOUSBHost.framework
+
+  ThermalInspectorTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - path: ThermalInspectorTests
+    dependencies:
+      - target: ThermalInspector
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_HOST: "$(BUILT_PRODUCTS_DIR)/Thermal Inspector.app/Contents/MacOS/Thermal Inspector"
+        BUNDLE_LOADER: "$(TEST_HOST)"
+
+schemes:
+  ThermalInspector:
+    build:
+      targets:
+        ThermalInspector: all
+        ThermalInspectorTests: [test]
+    test:
+      targets:
+        - ThermalInspectorTests

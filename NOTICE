@@ -1,0 +1,22 @@
+Thermal Inspector
+Copyright 2026 Timo Schrappe and Thermal Inspector contributors
+
+Licensed under the Apache License, Version 2.0 (see LICENSE).
+
+The USB protocol implementation in ThermalInspector/Camera/ (P3Protocol.swift,
+P3FrameAssembler.swift, P3Camera.swift) is a Swift port of the Python driver
+from Thermal Camera Viewer <https://github.com/skywalker1905/thermal-camera-viewer>,
+Copyright Thermal Camera Viewer contributors, licensed under the Apache License,
+Version 2.0.
+
+That driver includes substantial portions derived from p3-ir-camera
+<https://github.com/jvdillon/p3-ir-camera>, Copyright Joshua V. Dillon and
+contributors, licensed under the Apache License, Version 2.0, and is based on
+USB traffic analysis by @aeternium
+<https://github.com/jvdillon/p3-ir-camera/issues/2>.
+
+Changes compared to the original: rewritten in Swift for macOS using Apple's
+IOUSBHost framework instead of PyUSB/libusb.
+
+"ThermalMaster" and "InfiRay" are trademarks of their respective owners. This
+project is not affiliated with or endorsed by them.

@@ -1,0 +1,1756 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "%@  max %@  avg %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@  max %2$@  Ø %3$@"
+          }
+        }
+      }
+    },
+    "%lld frames": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Bilder"
+          }
+        }
+      }
+    },
+    "Above": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ab"
+          }
+        }
+      }
+    },
+    "Aluminum, bare": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aluminium, blank"
+          }
+        }
+      }
+    },
+    "Analysis": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Analyse"
+          }
+        }
+      }
+    },
+    "Arctic": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arktis"
+          }
+        }
+      }
+    },
+    "Automatic": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatisch"
+          }
+        }
+      }
+    },
+    "Averages several frames – reveals small temperature differences but delays motion": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mittelt mehrere Bilder – macht kleine Temperaturunterschiede sichtbar, verzögert aber Bewegungen"
+          }
+        }
+      }
+    },
+    "Black electrical tape / matte paint": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schwarzes Isolierband / Mattlack"
+          }
+        }
+      }
+    },
+    "Black hot": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schwarz heiß"
+          }
+        }
+      }
+    },
+    "Box": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Messbereich"
+          }
+        }
+      }
+    },
+    "Briefly closes the shutter and recalibrates the sensor. Helps against streaks and drift.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schließt kurz den Shutter und gleicht den Sensor neu ab. Hilft gegen Schlieren und Drift."
+          }
+        }
+      }
+    },
+    "Calibration": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kalibrierung"
+          }
+        }
+      }
+    },
+    "Camera": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kamera"
+          }
+        }
+      }
+    },
+    "Camera not found (USB %@).": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kamera nicht gefunden (USB %@)."
+          }
+        }
+      }
+    },
+    "Capture": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufnahme"
+          }
+        }
+      }
+    },
+    "Capture Reference": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Referenz aufnehmen"
+          }
+        }
+      }
+    },
+    "Capture a reference image for the difference view (⌘D)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Referenzbild für die Differenzansicht aufnehmen (⌘D)"
+          }
+        }
+      }
+    },
+    "Capture the reference with the board **powered off**, then power it on: the difference image shows only the heating – ideal for finding shorts.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Referenz bei **ausgeschalteter** Platine aufnehmen, dann einschalten: Das Differenzbild zeigt nur die Erwärmung – ideal zum Finden von Kurzschlüssen."
+          }
+        }
+      }
+    },
+    "Capturing reference …": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nehme Referenz auf …"
+          }
+        }
+      }
+    },
+    "Ceramic (capacitors)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keramik (Kondensatoren)"
+          }
+        }
+      }
+    },
+    "Choose": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auswählen"
+          }
+        }
+      }
+    },
+    "Choose Material …": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Material wählen …"
+          }
+        }
+      }
+    },
+    "Choose the “Spot” or “Box” tool and click or drag in the image.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Werkzeug „Messpunkt“ oder „Messbereich“ wählen und ins Bild klicken bzw. ziehen."
+          }
+        }
+      }
+    },
+    "Choose …": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auswählen …"
+          }
+        }
+      }
+    },
+    "Clear": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leeren"
+          }
+        }
+      }
+    },
+    "Command failed: %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Befehl fehlgeschlagen: %@"
+          }
+        }
+      }
+    },
+    "Connecting …": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbinde …"
+          }
+        }
+      }
+    },
+    "Copper, oxidized": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kupfer, oxidiert"
+          }
+        }
+      }
+    },
+    "Cursor (%lld, %lld): %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cursor (%1$lld, %2$lld): %3$@"
+          }
+        }
+      }
+    },
+    "Demo (simulated board)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demo (simulierte Platine)"
+          }
+        }
+      }
+    },
+    "Demo camera": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demo-Kamera"
+          }
+        }
+      }
+    },
+    "Detail": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detail"
+          }
+        }
+      }
+    },
+    "Detail: the camera's own contrast-enhanced image – shows component outlines better. Measurements still use the temperatures.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detail: das kontrastverstärkte Bild der Kamera – zeigt Bauteilkonturen besser. Gemessen wird weiterhin mit den Temperaturen."
+          }
+        }
+      }
+    },
+    "Difference": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Differenz"
+          }
+        }
+      }
+    },
+    "Difference Image": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Differenzbild"
+          }
+        }
+      }
+    },
+    "Discard": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verwerfen"
+          }
+        }
+      }
+    },
+    "Disconnected": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Getrennt"
+          }
+        }
+      }
+    },
+    "Display": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Darstellung"
+          }
+        }
+      }
+    },
+    "Drifting (%@)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drift (%@)"
+          }
+        }
+      }
+    },
+    "Emissivity ε": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emissionsgrad ε"
+          }
+        }
+      }
+    },
+    "Error: %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fehler: %@"
+          }
+        }
+      }
+    },
+    "Export": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export"
+          }
+        }
+      }
+    },
+    "Export CSV": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CSV exportieren"
+          }
+        }
+      }
+    },
+    "Files": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dateien"
+          }
+        }
+      }
+    },
+    "Firmware": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Firmware"
+          }
+        }
+      }
+    },
+    "Freeze": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einfrieren"
+          }
+        }
+      }
+    },
+    "Freeze Image": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bild einfrieren"
+          }
+        }
+      }
+    },
+    "Freeze image (⌘F)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bild einfrieren (⌘F)"
+          }
+        }
+      }
+    },
+    "Frozen": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eingefroren"
+          }
+        }
+      }
+    },
+    "General": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allgemein"
+          }
+        }
+      }
+    },
+    "History": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verlauf"
+          }
+        }
+      }
+    },
+    "History saved: %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verlauf gespeichert: %@"
+          }
+        }
+      }
+    },
+    "IC package (epoxy)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IC-Gehäuse (Epoxid)"
+          }
+        }
+      }
+    },
+    "Image": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bild"
+          }
+        }
+      }
+    },
+    "Image size": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bildgröße"
+          }
+        }
+      }
+    },
+    "Image with measurements (PNG)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bild mit Messwerten (PNG)"
+          }
+        }
+      }
+    },
+    "Iron": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iron"
+          }
+        }
+      }
+    },
+    "Isotherm (color hot areas only)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isotherme (nur heiße Bereiche färben)"
+          }
+        }
+      }
+    },
+    "Keep history for": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verlauf aufbewahren für"
+          }
+        }
+      }
+    },
+    "Keeps the color scale fixed so images stay comparable": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hält die Farbskala fest, damit Bilder vergleichbar bleiben"
+          }
+        }
+      }
+    },
+    "Language": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sprache"
+          }
+        }
+      }
+    },
+    "Lava": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lava"
+          }
+        }
+      }
+    },
+    "Live": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Live"
+          }
+        }
+      }
+    },
+    "Lock Current Range": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aktuellen Bereich fixieren"
+          }
+        }
+      }
+    },
+    "Lock Range": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bereich fixieren"
+          }
+        }
+      }
+    },
+    "Longer histories and shorter intervals use more memory. The history is exported as CSV from the history panel.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Längere Verläufe und kürzere Intervalle brauchen mehr Speicher. Exportiert wird der Verlauf als CSV über den Verlaufsbereich."
+          }
+        }
+      }
+    },
+    "Looking for camera … please connect it via USB": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suche Kamera … bitte per USB anschließen"
+          }
+        }
+      }
+    },
+    "Manual": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manuell"
+          }
+        }
+      }
+    },
+    "Manual range": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manueller Bereich"
+          }
+        }
+      }
+    },
+    "Max/min markers": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Max-/Min-Markierung"
+          }
+        }
+      }
+    },
+    "Maximum": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Maximum"
+          }
+        }
+      }
+    },
+    "Measurement": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Messung"
+          }
+        }
+      }
+    },
+    "Measurements": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Messpunkte"
+          }
+        }
+      }
+    },
+    "Minimum": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Minimum"
+          }
+        }
+      }
+    },
+    "Mirror horizontally": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horizontal spiegeln"
+          }
+        }
+      }
+    },
+    "Mirror vertically": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vertikal spiegeln"
+          }
+        }
+      }
+    },
+    "Model": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modell"
+          }
+        }
+      }
+    },
+    "No data yet": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noch keine Daten"
+          }
+        }
+      }
+    },
+    "No image to record": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein Bild zum Aufnehmen"
+          }
+        }
+      }
+    },
+    "No image to save": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kein Bild zum Speichern"
+          }
+        }
+      }
+    },
+    "Noise Filter": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rauschfilter"
+          }
+        }
+      }
+    },
+    "Off": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aus"
+          }
+        }
+      }
+    },
+    "Open Output Folder": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ausgabeordner öffnen"
+          }
+        }
+      }
+    },
+    "Open in Finder": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Im Finder öffnen"
+          }
+        }
+      }
+    },
+    "Orientation": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ausrichtung"
+          }
+        }
+      }
+    },
+    "Output folder": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ausgabeordner"
+          }
+        }
+      }
+    },
+    "Palette": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Farbpalette"
+          }
+        }
+      }
+    },
+    "Plastic connectors": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kunststoff-Steckverbinder"
+          }
+        }
+      }
+    },
+    "Pointer": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zeiger"
+          }
+        }
+      }
+    },
+    "Pointer: read temperatures and drag spots or boxes to move them · Spot: click to place · Box: drag to draw": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zeiger: Temperaturen ablesen und Messpunkte oder -bereiche verschieben · Messpunkt: klicken zum Setzen · Messbereich: aufziehen"
+          }
+        }
+      }
+    },
+    "Rainbow": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regenbogen"
+          }
+        }
+      }
+    },
+    "Range": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Messbereich"
+          }
+        }
+      }
+    },
+    "Readings on bare metal are unreliable. Better: stick a piece of matte electrical tape on it and use ε = 0.95.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bei blanken Metallen sind Messwerte unzuverlässig. Besser: Stück mattes Isolierband aufkleben und ε = 0,95 verwenden."
+          }
+        }
+      }
+    },
+    "Record": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufnahme"
+          }
+        }
+      }
+    },
+    "Record a value every": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Messwert aufzeichnen alle"
+          }
+        }
+      }
+    },
+    "Recording failed: %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufnahme fehlgeschlagen: %@"
+          }
+        }
+      }
+    },
+    "Recording …": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aufnahme läuft …"
+          }
+        }
+      }
+    },
+    "Reference": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Referenz"
+          }
+        }
+      }
+    },
+    "Reference saved – difference image active": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Referenz gespeichert – Differenzbild aktiv"
+          }
+        }
+      }
+    },
+    "Reflected Temp.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reflektierte Temp."
+          }
+        }
+      }
+    },
+    "Remember settings": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einstellungen merken"
+          }
+        }
+      }
+    },
+    "Remove": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entfernen"
+          }
+        }
+      }
+    },
+    "Remove All": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle löschen"
+          }
+        }
+      }
+    },
+    "Remove All Measurements": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle Messpunkte löschen"
+          }
+        }
+      }
+    },
+    "Renew Reference": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Referenz erneuern"
+          }
+        }
+      }
+    },
+    "Reset": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zurücksetzen"
+          }
+        }
+      }
+    },
+    "Reset All Settings …": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle Einstellungen zurücksetzen …"
+          }
+        }
+      }
+    },
+    "Reset all settings to their defaults?": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alle Einstellungen auf die Standardwerte zurücksetzen?"
+          }
+        }
+      }
+    },
+    "Restart Now": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jetzt neu starten"
+          }
+        }
+      }
+    },
+    "Restores palette, temperature range, emissivity, orientation, noise filter and measuring range on the next launch.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stellt Farbpalette, Temperaturbereich, Emissionsgrad, Ausrichtung, Rauschfilter und Messbereich beim nächsten Start wieder her."
+          }
+        }
+      }
+    },
+    "Resume": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fortsetzen"
+          }
+        }
+      }
+    },
+    "Resume Live Image": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Live-Bild fortsetzen"
+          }
+        }
+      }
+    },
+    "Rotate 90° clockwise": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90° im Uhrzeigersinn drehen"
+          }
+        }
+      }
+    },
+    "Rotate 90° counterclockwise": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "90° gegen den Uhrzeigersinn drehen"
+          }
+        }
+      }
+    },
+    "Save Snapshot": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schnappschuss speichern"
+          }
+        }
+      }
+    },
+    "Save snapshot: PNG + temperature data (⌘S)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schnappschuss speichern: PNG + Temperaturdaten (⌘S)"
+          }
+        }
+      }
+    },
+    "Saved snapshots and videos are not affected.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gespeicherte Schnappschüsse und Videos bleiben erhalten."
+          }
+        }
+      }
+    },
+    "Saving failed: %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Speichern fehlgeschlagen: %@"
+          }
+        }
+      }
+    },
+    "Serial Number": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seriennummer"
+          }
+        }
+      }
+    },
+    "Settings": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einstellungen"
+          }
+        }
+      }
+    },
+    "Settings and measurements (JSON)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einstellungen und Messwerte (JSON)"
+          }
+        }
+      }
+    },
+    "Show Difference Image": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Differenzbild anzeigen"
+          }
+        }
+      }
+    },
+    "Show difference image (ΔT)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Differenzbild anzeigen (ΔT)"
+          }
+        }
+      }
+    },
+    "Show difference to the reference (⇧⌘D)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Differenz zur Referenz anzeigen (⇧⌘D)"
+          }
+        }
+      }
+    },
+    "Show in Finder": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Im Finder zeigen"
+          }
+        }
+      }
+    },
+    "Show/hide settings": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einstellungen ein-/ausblenden"
+          }
+        }
+      }
+    },
+    "Show/hide temperature history": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temperaturverlauf ein-/ausblenden"
+          }
+        }
+      }
+    },
+    "Shutter / Recalibrate": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shutter / Kalibrieren"
+          }
+        }
+      }
+    },
+    "Shutter / Recalibrate (NUC)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shutter / Kalibrieren (NUC)"
+          }
+        }
+      }
+    },
+    "Shutter triggered – camera is recalibrating": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shutter ausgelöst – Kamera kalibriert sich neu"
+          }
+        }
+      }
+    },
+    "Simulation": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Simulation"
+          }
+        }
+      }
+    },
+    "Smooth interpolation": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weiche Interpolation"
+          }
+        }
+      }
+    },
+    "Snapshot": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schnappschuss"
+          }
+        }
+      }
+    },
+    "Snapshot saved: %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schnappschuss gespeichert: %@"
+          }
+        }
+      }
+    },
+    "Solder / tinned": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lötzinn / verzinnt"
+          }
+        }
+      }
+    },
+    "Solder mask (FR-4)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lötstopplack (FR-4)"
+          }
+        }
+      }
+    },
+    "Source": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quelle"
+          }
+        }
+      }
+    },
+    "Spot": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Messpunkt"
+          }
+        }
+      }
+    },
+    "Start Video Recording": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Videoaufnahme starten"
+          }
+        }
+      }
+    },
+    "Start/stop video recording (⌘R)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Videoaufnahme starten/beenden (⌘R)"
+          }
+        }
+      }
+    },
+    "Status": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Status"
+          }
+        }
+      }
+    },
+    "Stop": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stopp"
+          }
+        }
+      }
+    },
+    "Stop Video Recording": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Videoaufnahme beenden"
+          }
+        }
+      }
+    },
+    "System": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System"
+          }
+        }
+      }
+    },
+    "Temperature": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temperatur"
+          }
+        }
+      }
+    },
+    "Temperature History": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temperaturverlauf"
+          }
+        }
+      }
+    },
+    "Temperature Range": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temperaturbereich"
+          }
+        }
+      }
+    },
+    "Temperature data of every pixel (CSV)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temperatur jedes Pixels (CSV)"
+          }
+        }
+      }
+    },
+    "The camera is still drifting (e.g. warming up). Readings can be off by several kelvin – trigger the shutter right before measuring.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Kamera driftet noch (z. B. beim Aufwärmen). Messwerte können um mehrere Kelvin abweichen – direkt vor dem Messen den Shutter auslösen."
+          }
+        }
+      }
+    },
+    "The camera recalibrated since the reference was taken. The difference image may be shifted – capture the reference again.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Kamera hat sich seit der Referenzaufnahme neu kalibriert. Das Differenzbild kann verschoben sein – Referenz neu aufnehmen."
+          }
+        }
+      }
+    },
+    "The camera recalibrates itself about every 90 seconds and corrects its drift. The size of the correction shows how much the readings had drifted.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Kamera kalibriert sich etwa alle 90 Sekunden selbst und korrigiert dabei ihre Drift. Die Größe der Korrektur zeigt, wie weit die Messwerte abgewichen waren."
+          }
+        }
+      }
+    },
+    "The last automatic calibration had to correct the image by this amount. Trigger the shutter right before measuring.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Um diesen Betrag musste die letzte automatische Kalibrierung das Bild korrigieren. Direkt vor dem Messen den Shutter auslösen."
+          }
+        }
+      }
+    },
+    "The new language is used after restarting the app.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die neue Sprache wird nach einem Neustart der App verwendet."
+          }
+        }
+      }
+    },
+    "Thermal Inspector": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thermal Inspector"
+          }
+        }
+      }
+    },
+    "Time": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zeit"
+          }
+        }
+      }
+    },
+    "Time Span": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zeitraum"
+          }
+        }
+      }
+    },
+    "Tool": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Werkzeug"
+          }
+        }
+      }
+    },
+    "Try without a camera (demo)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ohne Kamera ausprobieren (Demo)"
+          }
+        }
+      }
+    },
+    "USB interface %lld is not open.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "USB-Interface %lld ist nicht geöffnet."
+          }
+        }
+      }
+    },
+    "USB interface %lld of the camera was not found.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "USB-Interface %lld der Kamera wurde nicht gefunden."
+          }
+        }
+      }
+    },
+    "Video": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Video"
+          }
+        }
+      }
+    },
+    "Video saved: %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Video gespeichert: %@"
+          }
+        }
+      }
+    },
+    "Video size": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Videogröße"
+          }
+        }
+      }
+    },
+    "White hot": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weiß heiß"
+          }
+        }
+      }
+    },
+    "average of %lld frames": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ø %lld Bilder"
+          }
+        }
+      }
+    },
+    "avg %@  min %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ø %1$@  min %2$@"
+          }
+        }
+      }
+    },
+    "correction %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Korrektur %@"
+          }
+        }
+      }
+    },
+    "max %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "max %@"
+          }
+        }
+      }
+    },
+    "min %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "min %@"
+          }
+        }
+      }
+    },
+    "min %@   avg %@   max %@": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "min %1$@   Ø %2$@   max %3$@"
+          }
+        }
+      }
+    },
+    "not observed yet": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "noch nicht beobachtet"
+          }
+        }
+      }
+    },
+    "ΔT": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ΔT"
+          }
+        }
+      }
+    },
+    "ΔT to reference": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ΔT zur Referenz"
+          }
+        }
+      }
+    },
+    "−20 … 150 °C (sensitive)": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "−20 … 150 °C (empfindlich)"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
