@@ -1,0 +1,47 @@
+# Experimental iPhone/iPad app to find out whether the P3 can be used from iOS
+# via the External Accessory framework. Generate with:  xcodegen generate
+name: AccessoryProbe
+
+options:
+  bundleIdPrefix: local.thermalinspector
+  deploymentTarget:
+    iOS: "17.0"
+  developmentLanguage: en
+
+settings:
+  base:
+    # Swift 5 mode keeps the run-loop based stream code simple.
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    # No team is stored in the project: everyone signs with their own (free) Apple
+    # account by choosing a team in Xcode under Signing & Capabilities.
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: ""
+
+targets:
+  AccessoryProbe:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources
+      # Shared with the macOS app – plain Swift, no macOS-only APIs.
+      - path: ../../ThermalInspector/Camera/P3Protocol.swift
+      - path: ../../ThermalInspector/Camera/P3FrameAssembler.swift
+      - path: ../../ThermalInspector/Camera/P3StreamParser.swift
+      - path: ../../ThermalInspector/Thermal/ThermalFrame.swift
+      - path: ../../ThermalInspector/Thermal/Palette.swift
+      - path: ../../ThermalInspector/Thermal/ThermalRenderer.swift
+    settings:
+      base:
+        # Bundle IDs must be unique at Apple. Appending the team ID makes it
+        # unique for everyone who builds the app with their own account.
+        PRODUCT_BUNDLE_IDENTIFIER: local.thermalinspector.accessoryprobe.$(DEVELOPMENT_TEAM:default=local)
+        TARGETED_DEVICE_FAMILY: "1,2"
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_CFBundleDisplayName: P3 Probe
+        INFOPLIST_KEY_UILaunchScreen_Generation: YES
+        INFOPLIST_KEY_UISupportedInterfaceOrientations: UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight
+        INFOPLIST_FILE: Sources/Info.plist
+    dependencies:
+      - sdk: ExternalAccessory.framework
