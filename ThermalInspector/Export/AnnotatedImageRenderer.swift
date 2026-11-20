@@ -1,6 +1,12 @@
-import AppKit
 import CoreGraphics
 import CoreText
+#if os(macOS)
+import AppKit
+private typealias PlatformFont = NSFont
+#else
+import UIKit
+private typealias PlatformFont = UIFont
+#endif
 
 /// Everything that goes into an exported image (snapshot or video frame).
 struct AnnotationScene {
@@ -172,7 +178,7 @@ enum AnnotatedImageRenderer {
 
     private static func makeLine(_ text: String, size: CGFloat, color: CGColor) -> CTLine {
         let attributes: [NSAttributedString.Key: Any] = [
-            .font: NSFont.monospacedDigitSystemFont(ofSize: size, weight: .semibold),
+            .font: PlatformFont.monospacedDigitSystemFont(ofSize: size, weight: .semibold),
             NSAttributedString.Key(kCTForegroundColorAttributeName as String): color,
         ]
         return CTLineCreateWithAttributedString(NSAttributedString(string: text, attributes: attributes))

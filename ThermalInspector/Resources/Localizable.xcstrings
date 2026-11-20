@@ -51,6 +51,16 @@
         }
       }
     },
+    "App Settings": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "App-Einstellungen"
+          }
+        }
+      }
+    },
     "Arctic": {
       "localizations": {
         "de": {
@@ -67,6 +77,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Automatisch"
+          }
+        }
+      }
+    },
+    "Automatic shutter": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatischer Shutter"
           }
         }
       }
@@ -121,6 +141,26 @@
         }
       }
     },
+    "Brightness": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Helligkeit"
+          }
+        }
+      }
+    },
+    "Burn-in protection": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Einbrennschutz"
+          }
+        }
+      }
+    },
     "Calibration": {
       "localizations": {
         "de": {
@@ -137,6 +177,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Kamera"
+          }
+        }
+      }
+    },
+    "Camera not connected.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kamera nicht verbunden."
           }
         }
       }
@@ -211,6 +261,16 @@
         }
       }
     },
+    "Changes only the camera's own image in the Detail view, not the temperatures.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ändert nur das kamerainterne Bild der Detailansicht, nicht die Temperaturen."
+          }
+        }
+      }
+    },
     "Choose": {
       "localizations": {
         "de": {
@@ -281,6 +341,26 @@
         }
       }
     },
+    "Contrast": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kontrast"
+          }
+        }
+      }
+    },
+    "Controls": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Steuerung"
+          }
+        }
+      }
+    },
     "Copper, oxidized": {
       "localizations": {
         "de": {
@@ -327,6 +407,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Detail"
+          }
+        }
+      }
+    },
+    "Detail Enhancement": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detailverstärkung"
           }
         }
       }
@@ -387,6 +477,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Darstellung"
+          }
+        }
+      }
+    },
+    "Done": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fertig"
           }
         }
       }
@@ -621,6 +721,16 @@
         }
       }
     },
+    "Language …": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sprache …"
+          }
+        }
+      }
+    },
     "Lava": {
       "localizations": {
         "de": {
@@ -781,6 +891,16 @@
         }
       }
     },
+    "More": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mehr"
+          }
+        }
+      }
+    },
     "No data yet": {
       "localizations": {
         "de": {
@@ -817,6 +937,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Rauschfilter"
+          }
+        }
+      }
+    },
+    "Noise Reduction": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rauschunterdrückung"
+          }
+        }
+      }
+    },
+    "Not supported on this device yet.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auf diesem Gerät noch nicht unterstützt."
           }
         }
       }
@@ -1221,6 +1361,16 @@
         }
       }
     },
+    "Share": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Teilen"
+          }
+        }
+      }
+    },
     "Show Difference Image": {
       "localizations": {
         "de": {
@@ -1347,6 +1497,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Schnappschuss gespeichert: %@"
+          }
+        }
+      }
+    },
+    "Snapshots, videos and history exports are saved in the Files app under “On My iPhone/iPad → Thermal Inspector”.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schnappschüsse, Videos und Verlaufsexporte landen in der Dateien-App unter „Auf meinem iPhone/iPad → Thermal Inspector“."
           }
         }
       }
@@ -1491,12 +1651,32 @@
         }
       }
     },
+    "The camera closes its shutter when it sees the sun or a laser, to protect the sensor. The official app turns this on.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Kamera schließt ihren Shutter, wenn sie die Sonne oder einen Laser sieht, um den Sensor zu schützen. Die offizielle App schaltet das ein."
+          }
+        }
+      }
+    },
     "The camera is still drifting (e.g. warming up). Readings can be off by several kelvin – trigger the shutter right before measuring.": {
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "translated",
             "value": "Die Kamera driftet noch (z. B. beim Aufwärmen). Messwerte können um mehrere Kelvin abweichen – direkt vor dem Messen den Shutter auslösen."
+          }
+        }
+      }
+    },
+    "The camera no longer recalibrates itself every 90 seconds, so the image does not jump during a measurement. Readings drift slowly instead – trigger the shutter by hand before measuring. Switching reconnects the camera for a few seconds.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Kamera kalibriert sich nicht mehr alle 90 Sekunden selbst, das Bild springt also nicht mitten in einer Messung. Dafür driften die Messwerte langsam – vor dem Messen den Shutter von Hand auslösen. Beim Umschalten verbindet sich die Kamera für ein paar Sekunden neu."
           }
         }
       }
@@ -1517,6 +1697,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Die Kamera kalibriert sich etwa alle 90 Sekunden selbst und korrigiert dabei ihre Drift. Die Größe der Korrektur zeigt, wie weit die Messwerte abgewichen waren."
+          }
+        }
+      }
+    },
+    "The camera sends no image. Unplug it and plug it back in.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Die Kamera sendet kein Bild. Bitte ab- und wieder anstecken."
           }
         }
       }

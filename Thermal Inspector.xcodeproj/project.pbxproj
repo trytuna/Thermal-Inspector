@@ -1,0 +1,839 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01A50129FDBF7484878DBA80 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA09DDBF184A2E66050FAC17 /* Palette.swift */; };
+		03C76CD1E4C9B1486B98E7CD /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA09DDBF184A2E66050FAC17 /* Palette.swift */; };
+		09AC40F1BA9B65343B4407B0 /* ThermalInspectorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E357F9853F6FB2569760C29D /* ThermalInspectorApp.swift */; };
+		0AE2A8A3B5C34A790B06F23E /* P3FrameAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CD33D4B5382A901A5A2DE2 /* P3FrameAssembler.swift */; };
+		191AC2A323CB663FA8EC583A /* AnnotatedImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A698D7E7D4CE94916D20D5C /* AnnotatedImageRenderer.swift */; };
+		1B56907E10E63DFA2AD9A984 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361D2397844BE63A4B13186D /* Preferences.swift */; };
+		1F73809F9FCE8E2FFB5A3C4F /* DebugScreenshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BB49653BD1D91C6FFCDA3AC /* DebugScreenshot.swift */; };
+		2339F7C98AC214CEB83C42B6 /* P3Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58E72628CFC2C6EA57946DCF /* P3Camera.swift */; };
+		2604BF25E66D99D804B9A58E /* AccessoryCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 806D88EB2053504C61DBF5B7 /* AccessoryCamera.swift */; };
+		290CF8C01279768E31AFD5D6 /* ThermalCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CF310FF863434D9A5A09C2 /* ThermalCamera.swift */; };
+		294C2581EA599FD03DA94F95 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202C7CECD95EA8CDB30E4F61 /* PreferencesView.swift */; };
+		308ABD3AAAD3BDD80F36447E /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F745BF9CAB6A11FDFF216202 /* StatusBarView.swift */; };
+		39254770DFD37EB6F9817E0E /* ThermalRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7738B942D87F802DF5F44897 /* ThermalRenderer.swift */; };
+		3A9240B31599FA5575AB3B7B /* InspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F89D26D07DF90B7983D515 /* InspectorView.swift */; };
+		3FC1F30C39A4AD5C1C68841F /* HistoryChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83E18679F0EC3B2D65B5B3B /* HistoryChartView.swift */; };
+		40BE60FF6E2FCEB13F798380 /* MacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA73947FEDD94BA4F54E6435 /* MacApp.swift */; };
+		45DE3847933EFBC13ADA1176 /* TemperatureHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6D735D28545C59AFCC7448 /* TemperatureHistory.swift */; };
+		46C50E7188FC6027831E3178 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 82A2D0A7F4FDA07B598016F2 /* Localizable.xcstrings */; };
+		495022787C50CA93066BF215 /* ColorBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFE38F9B06CC192C0619ADA /* ColorBarView.swift */; };
+		4B7706C7872C4E8011606287 /* P3Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFE6ED000394EE3CE325F9C /* P3Protocol.swift */; };
+		4CEFC6B7865A9CE43983CFEC /* P3FrameAssembler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CD33D4B5382A901A5A2DE2 /* P3FrameAssembler.swift */; };
+		4D1BE7E42E403ADED67B63B5 /* ThermalInspectorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604C76C88A5960C0E0AACA88 /* ThermalInspectorTests.swift */; };
+		51A0469433B2B468C4EEC3E6 /* Measurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C13EC14191E41F081CCA046 /* Measurements.swift */; };
+		5A1ECEAF6281B5E784CB3818 /* SimulatedCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C7AB2B923211C9CE46E02D /* SimulatedCamera.swift */; };
+		5ABA0BFF0D05210CB6B71A86 /* ThermalRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7738B942D87F802DF5F44897 /* ThermalRenderer.swift */; };
+		5C9D1A7B4B85C67FAB0EE6FF /* FloatingToolPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C5CE30E6C1F8E106DD0EAD /* FloatingToolPicker.swift */; };
+		5FA6127B76AE26207DF83D49 /* ThermalFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4587A653B0B810BD67B12D16 /* ThermalFrame.swift */; };
+		6CC0D4259B0C469FF02CC5A6 /* ThermalImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C88060F614DD4B8F5127FB /* ThermalImageView.swift */; };
+		730A58E35F6E7D40CBA74488 /* P3StreamParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B6C5ADA3E902F2AFE0DD92 /* P3StreamParser.swift */; };
+		736D92C795A09B0132EBBF92 /* CalibrationMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCFCEF09C673EE46445F53A /* CalibrationMonitor.swift */; };
+		773026B413A1ED7C2EFE4903 /* AnnotatedImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A698D7E7D4CE94916D20D5C /* AnnotatedImageRenderer.swift */; };
+		890E8FD1395B62FE03AA5EF8 /* IOUSBHost.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6A05A145213DDEF0D94CAE3 /* IOUSBHost.framework */; };
+		8A9AE6322E2B8F4FA656ED72 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C2B7F9BA87ADE2B0BB7A7 /* CameraController.swift */; };
+		8DD396772DB5DE140A147EEE /* Radiometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8FF0F4BAE9319F69D1E556 /* Radiometry.swift */; };
+		8EB81D118438EDE81B8FAFA8 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099C365F5E5668A604FD3B0C /* AppModel.swift */; };
+		93A0AF98E21DB90ED04FF34B /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C2B7F9BA87ADE2B0BB7A7 /* CameraController.swift */; };
+		9434C396B243AE2CAC8B550D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB8F547D486C85E530D450F4 /* Assets.xcassets */; };
+		96695724A33F057E68F17528 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B31D604494AE6C50A58A2FB8 /* ExternalAccessory.framework */; };
+		9D8BD70D57C27D3636208225 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB8F547D486C85E530D450F4 /* Assets.xcassets */; };
+		A1D479FA752E44183558F48C /* SimulatedCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C7AB2B923211C9CE46E02D /* SimulatedCamera.swift */; };
+		A4CF38A89F7B2B683634686E /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361D2397844BE63A4B13186D /* Preferences.swift */; };
+		ADCB1690F035D71F7995ECDE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E39CE8B2ED4191E091643E /* ContentView.swift */; };
+		AF3FF5AB48B1A682090B3F4D /* InspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F89D26D07DF90B7983D515 /* InspectorView.swift */; };
+		AFA5FC765E2BFFCB2D929B30 /* P3StreamParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B6C5ADA3E902F2AFE0DD92 /* P3StreamParser.swift */; };
+		B0BB0EDFEA36605480D377C4 /* USBDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 023B60CC1F24527994DE05C6 /* USBDevice.swift */; };
+		B301E4C1E62C710E5A867836 /* AppModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099C365F5E5668A604FD3B0C /* AppModel.swift */; };
+		B58AD253A657DAC8727A1658 /* SnapshotExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88155218940E73FD85BDE012 /* SnapshotExporter.swift */; };
+		B928B49090903D481E2971EE /* P3AccessoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E5FBF8E4E10D139C6882E7 /* P3AccessoryProtocol.swift */; };
+		BB7370E16B0CAC243CCE8A1E /* Radiometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B8FF0F4BAE9319F69D1E556 /* Radiometry.swift */; };
+		BF22B811F1516F79C239B3A3 /* ThermalFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4587A653B0B810BD67B12D16 /* ThermalFrame.swift */; };
+		C15371588282B1879F33AAB2 /* ThermalImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C88060F614DD4B8F5127FB /* ThermalImageView.swift */; };
+		C2FF1B139F38878E6ABFB803 /* StatusBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F745BF9CAB6A11FDFF216202 /* StatusBarView.swift */; };
+		CAEF9D0EE6A07C614F8C184B /* HistoryChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83E18679F0EC3B2D65B5B3B /* HistoryChartView.swift */; };
+		CCF840F47ED6C0CD86DD2721 /* P3AccessoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E5FBF8E4E10D139C6882E7 /* P3AccessoryProtocol.swift */; };
+		CD19385ECEED7146545A36C9 /* ThermalCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8CF310FF863434D9A5A09C2 /* ThermalCamera.swift */; };
+		D1955BA0A9943BF016C2891D /* FloatingToolPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8C5CE30E6C1F8E106DD0EAD /* FloatingToolPicker.swift */; };
+		D2083793623BCEA73CFF42B2 /* ColorBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BFE38F9B06CC192C0619ADA /* ColorBarView.swift */; };
+		D6215B9F3B13D24384D9923D /* SnapshotExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88155218940E73FD85BDE012 /* SnapshotExporter.swift */; };
+		D83C50BE420B84850445D2A7 /* P3Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFE6ED000394EE3CE325F9C /* P3Protocol.swift */; };
+		DDB2CD55D9DE135DCBDD0016 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 82A2D0A7F4FDA07B598016F2 /* Localizable.xcstrings */; };
+		DE810001CAB3DD5D5352076B /* Measurements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C13EC14191E41F081CCA046 /* Measurements.swift */; };
+		E36453AEB67930C5A2A7B04E /* VideoRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B267560BD54EB2AF0437C6F /* VideoRecorder.swift */; };
+		E398A0D17004AF22F917B094 /* TemperatureHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF6D735D28545C59AFCC7448 /* TemperatureHistory.swift */; };
+		E875001D02ED2F0F96A6EBA8 /* CalibrationMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BCFCEF09C673EE46445F53A /* CalibrationMonitor.swift */; };
+		E898B9E174D79B6AFBF99F70 /* VideoRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B267560BD54EB2AF0437C6F /* VideoRecorder.swift */; };
+		EF07EF3A5BE1C36BB15250F6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E39CE8B2ED4191E091643E /* ContentView.swift */; };
+		F804C8A2A0B4F6CC4C82A171 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202C7CECD95EA8CDB30E4F61 /* PreferencesView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		251CACCA21F7E08A5CAC68F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B2476DC750F4DE3F2E608C8A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 50987482AD4F4DF9B28317D8;
+			remoteInfo = "Thermal Inspector";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		023B60CC1F24527994DE05C6 /* USBDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USBDevice.swift; sourceTree = "<group>"; };
+		057BFE7F09ACD3008729A172 /* Thermal Inspector iOS.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = "Thermal Inspector iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		099C365F5E5668A604FD3B0C /* AppModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModel.swift; sourceTree = "<group>"; };
+		0B8FF0F4BAE9319F69D1E556 /* Radiometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Radiometry.swift; sourceTree = "<group>"; };
+		17B6C5ADA3E902F2AFE0DD92 /* P3StreamParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P3StreamParser.swift; sourceTree = "<group>"; };
+		202C7CECD95EA8CDB30E4F61 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
+		21E5FBF8E4E10D139C6882E7 /* P3AccessoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P3AccessoryProtocol.swift; sourceTree = "<group>"; };
+		223C2B7F9BA87ADE2B0BB7A7 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		2BCFCEF09C673EE46445F53A /* CalibrationMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationMonitor.swift; sourceTree = "<group>"; };
+		361D2397844BE63A4B13186D /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		4587A653B0B810BD67B12D16 /* ThermalFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermalFrame.swift; sourceTree = "<group>"; };
+		46F5CA555F1AAF2AD8F30FCF /* Thermal Inspector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Thermal Inspector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		49C7AB2B923211C9CE46E02D /* SimulatedCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatedCamera.swift; sourceTree = "<group>"; };
+		4BFE38F9B06CC192C0619ADA /* ColorBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorBarView.swift; sourceTree = "<group>"; };
+		58E72628CFC2C6EA57946DCF /* P3Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P3Camera.swift; sourceTree = "<group>"; };
+		5BB49653BD1D91C6FFCDA3AC /* DebugScreenshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugScreenshot.swift; sourceTree = "<group>"; };
+		604C76C88A5960C0E0AACA88 /* ThermalInspectorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermalInspectorTests.swift; sourceTree = "<group>"; };
+		6C13EC14191E41F081CCA046 /* Measurements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measurements.swift; sourceTree = "<group>"; };
+		6FFE6ED000394EE3CE325F9C /* P3Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P3Protocol.swift; sourceTree = "<group>"; };
+		7148D2B53083EA57AFCB004A /* Thermal Inspector Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Thermal Inspector Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7738B942D87F802DF5F44897 /* ThermalRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermalRenderer.swift; sourceTree = "<group>"; };
+		7A698D7E7D4CE94916D20D5C /* AnnotatedImageRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotatedImageRenderer.swift; sourceTree = "<group>"; };
+		7B267560BD54EB2AF0437C6F /* VideoRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoRecorder.swift; sourceTree = "<group>"; };
+		806D88EB2053504C61DBF5B7 /* AccessoryCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessoryCamera.swift; sourceTree = "<group>"; };
+		82A2D0A7F4FDA07B598016F2 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		88155218940E73FD85BDE012 /* SnapshotExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotExporter.swift; sourceTree = "<group>"; };
+		89C88060F614DD4B8F5127FB /* ThermalImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermalImageView.swift; sourceTree = "<group>"; };
+		92CD33D4B5382A901A5A2DE2 /* P3FrameAssembler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = P3FrameAssembler.swift; sourceTree = "<group>"; };
+		97F89D26D07DF90B7983D515 /* InspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorView.swift; sourceTree = "<group>"; };
+		A3E39CE8B2ED4191E091643E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A8CF310FF863434D9A5A09C2 /* ThermalCamera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermalCamera.swift; sourceTree = "<group>"; };
+		B31D604494AE6C50A58A2FB8 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
+		BB8F547D486C85E530D450F4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C7B6D259D0A7BFE70302CBBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CF6D735D28545C59AFCC7448 /* TemperatureHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureHistory.swift; sourceTree = "<group>"; };
+		D8C5CE30E6C1F8E106DD0EAD /* FloatingToolPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingToolPicker.swift; sourceTree = "<group>"; };
+		E357F9853F6FB2569760C29D /* ThermalInspectorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThermalInspectorApp.swift; sourceTree = "<group>"; };
+		EA09DDBF184A2E66050FAC17 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
+		EDBD681509B4DC8467744716 /* ThermalInspector.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThermalInspector.entitlements; sourceTree = "<group>"; };
+		F6A05A145213DDEF0D94CAE3 /* IOUSBHost.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOUSBHost.framework; path = System/Library/Frameworks/IOUSBHost.framework; sourceTree = SDKROOT; };
+		F745BF9CAB6A11FDFF216202 /* StatusBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarView.swift; sourceTree = "<group>"; };
+		F83E18679F0EC3B2D65B5B3B /* HistoryChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryChartView.swift; sourceTree = "<group>"; };
+		FA73947FEDD94BA4F54E6435 /* MacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacApp.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6F00B0CF227097752552BC28 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96695724A33F057E68F17528 /* ExternalAccessory.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B0C97126D7932F4CB0D1738B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				890E8FD1395B62FE03AA5EF8 /* IOUSBHost.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		187E207761F8AFBD9BB33BBF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4BFE38F9B06CC192C0619ADA /* ColorBarView.swift */,
+				A3E39CE8B2ED4191E091643E /* ContentView.swift */,
+				D8C5CE30E6C1F8E106DD0EAD /* FloatingToolPicker.swift */,
+				F83E18679F0EC3B2D65B5B3B /* HistoryChartView.swift */,
+				97F89D26D07DF90B7983D515 /* InspectorView.swift */,
+				202C7CECD95EA8CDB30E4F61 /* PreferencesView.swift */,
+				F745BF9CAB6A11FDFF216202 /* StatusBarView.swift */,
+				89C88060F614DD4B8F5127FB /* ThermalImageView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4CD25EA8A90E025FD67D3023 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				057BFE7F09ACD3008729A172 /* Thermal Inspector iOS.app */,
+				7148D2B53083EA57AFCB004A /* Thermal Inspector Tests.xctest */,
+				46F5CA555F1AAF2AD8F30FCF /* Thermal Inspector.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5967D596FE01DA2EBC4B32FA /* ThermalInspector */ = {
+			isa = PBXGroup;
+			children = (
+				CD7E677E2D918CDAB4332AC7 /* Analysis */,
+				ACE7F0F0755043DEA7BA5FAD /* App */,
+				7879F2FE6E3AE9C6FE4F9C83 /* Camera */,
+				6C0F628680E756572BC17008 /* Export */,
+				8BE66A48D8191C1397B07284 /* Platform */,
+				E2680ECCD980AD1E0811A41B /* Resources */,
+				FE935FBEF51C147520BDC346 /* Thermal */,
+				187E207761F8AFBD9BB33BBF /* Views */,
+			);
+			path = ThermalInspector;
+			sourceTree = "<group>";
+		};
+		6C0F628680E756572BC17008 /* Export */ = {
+			isa = PBXGroup;
+			children = (
+				7A698D7E7D4CE94916D20D5C /* AnnotatedImageRenderer.swift */,
+				88155218940E73FD85BDE012 /* SnapshotExporter.swift */,
+				7B267560BD54EB2AF0437C6F /* VideoRecorder.swift */,
+			);
+			path = Export;
+			sourceTree = "<group>";
+		};
+		72F58090448DCEA134C6ECD0 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				5BB49653BD1D91C6FFCDA3AC /* DebugScreenshot.swift */,
+				FA73947FEDD94BA4F54E6435 /* MacApp.swift */,
+				58E72628CFC2C6EA57946DCF /* P3Camera.swift */,
+				EDBD681509B4DC8467744716 /* ThermalInspector.entitlements */,
+				023B60CC1F24527994DE05C6 /* USBDevice.swift */,
+			);
+			path = macOS;
+			sourceTree = "<group>";
+		};
+		7879F2FE6E3AE9C6FE4F9C83 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				223C2B7F9BA87ADE2B0BB7A7 /* CameraController.swift */,
+				21E5FBF8E4E10D139C6882E7 /* P3AccessoryProtocol.swift */,
+				92CD33D4B5382A901A5A2DE2 /* P3FrameAssembler.swift */,
+				6FFE6ED000394EE3CE325F9C /* P3Protocol.swift */,
+				17B6C5ADA3E902F2AFE0DD92 /* P3StreamParser.swift */,
+				49C7AB2B923211C9CE46E02D /* SimulatedCamera.swift */,
+				A8CF310FF863434D9A5A09C2 /* ThermalCamera.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		8BE66A48D8191C1397B07284 /* Platform */ = {
+			isa = PBXGroup;
+			children = (
+				BD3357E1705D39ECE27AA00C /* iOS */,
+				72F58090448DCEA134C6ECD0 /* macOS */,
+			);
+			path = Platform;
+			sourceTree = "<group>";
+		};
+		931227893B7A136DE2AB3117 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B31D604494AE6C50A58A2FB8 /* ExternalAccessory.framework */,
+				F6A05A145213DDEF0D94CAE3 /* IOUSBHost.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ACE7F0F0755043DEA7BA5FAD /* App */ = {
+			isa = PBXGroup;
+			children = (
+				099C365F5E5668A604FD3B0C /* AppModel.swift */,
+				361D2397844BE63A4B13186D /* Preferences.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		BD3357E1705D39ECE27AA00C /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				806D88EB2053504C61DBF5B7 /* AccessoryCamera.swift */,
+				C7B6D259D0A7BFE70302CBBE /* Info.plist */,
+				E357F9853F6FB2569760C29D /* ThermalInspectorApp.swift */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		CD7E677E2D918CDAB4332AC7 /* Analysis */ = {
+			isa = PBXGroup;
+			children = (
+				2BCFCEF09C673EE46445F53A /* CalibrationMonitor.swift */,
+				6C13EC14191E41F081CCA046 /* Measurements.swift */,
+				CF6D735D28545C59AFCC7448 /* TemperatureHistory.swift */,
+			);
+			path = Analysis;
+			sourceTree = "<group>";
+		};
+		E2680ECCD980AD1E0811A41B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BB8F547D486C85E530D450F4 /* Assets.xcassets */,
+				82A2D0A7F4FDA07B598016F2 /* Localizable.xcstrings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E2ED1F46D0A68D6697340DF7 /* ThermalInspectorTests */ = {
+			isa = PBXGroup;
+			children = (
+				604C76C88A5960C0E0AACA88 /* ThermalInspectorTests.swift */,
+			);
+			path = ThermalInspectorTests;
+			sourceTree = "<group>";
+		};
+		FC067A21346E79BC1DD7D97C = {
+			isa = PBXGroup;
+			children = (
+				5967D596FE01DA2EBC4B32FA /* ThermalInspector */,
+				E2ED1F46D0A68D6697340DF7 /* ThermalInspectorTests */,
+				931227893B7A136DE2AB3117 /* Frameworks */,
+				4CD25EA8A90E025FD67D3023 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FE935FBEF51C147520BDC346 /* Thermal */ = {
+			isa = PBXGroup;
+			children = (
+				EA09DDBF184A2E66050FAC17 /* Palette.swift */,
+				0B8FF0F4BAE9319F69D1E556 /* Radiometry.swift */,
+				4587A653B0B810BD67B12D16 /* ThermalFrame.swift */,
+				7738B942D87F802DF5F44897 /* ThermalRenderer.swift */,
+			);
+			path = Thermal;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		50987482AD4F4DF9B28317D8 /* Thermal Inspector */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 53A1039768C70A315982411B /* Build configuration list for PBXNativeTarget "Thermal Inspector" */;
+			buildPhases = (
+				0745C63D28D1D2099F6A0DB4 /* Sources */,
+				26599CE40FA357A7265544EE /* Resources */,
+				B0C97126D7932F4CB0D1738B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Thermal Inspector";
+			packageProductDependencies = (
+			);
+			productName = "Thermal Inspector";
+			productReference = 46F5CA555F1AAF2AD8F30FCF /* Thermal Inspector.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5716C89062A4513225A57292 /* Thermal Inspector iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DC7E2E5C3BADCA23096841F4 /* Build configuration list for PBXNativeTarget "Thermal Inspector iOS" */;
+			buildPhases = (
+				CF0CBCBE87F1C8A7D57DA338 /* Sources */,
+				0321DE973A5A27BEF95FB1C2 /* Resources */,
+				6F00B0CF227097752552BC28 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Thermal Inspector iOS";
+			packageProductDependencies = (
+			);
+			productName = "Thermal Inspector iOS";
+			productReference = 057BFE7F09ACD3008729A172 /* Thermal Inspector iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6F0E563E4CC41EC5CE58215F /* Thermal Inspector Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 215CFA038065AC9E1C49D501 /* Build configuration list for PBXNativeTarget "Thermal Inspector Tests" */;
+			buildPhases = (
+				84CEC76C46D5895F25FC17E5 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F7BC6EC6EF8A34ECCFFA5BBF /* PBXTargetDependency */,
+			);
+			name = "Thermal Inspector Tests";
+			packageProductDependencies = (
+			);
+			productName = "Thermal Inspector Tests";
+			productReference = 7148D2B53083EA57AFCB004A /* Thermal Inspector Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B2476DC750F4DE3F2E608C8A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					50987482AD4F4DF9B28317D8 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Manual;
+					};
+					5716C89062A4513225A57292 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					6F0E563E4CC41EC5CE58215F = {
+						DevelopmentTeam = "";
+					};
+				};
+			};
+			buildConfigurationList = 2554E40B20F9988C5A72BA7E /* Build configuration list for PBXProject "Thermal Inspector" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				de,
+				en,
+			);
+			mainGroup = FC067A21346E79BC1DD7D97C;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 4CD25EA8A90E025FD67D3023 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				50987482AD4F4DF9B28317D8 /* Thermal Inspector */,
+				5716C89062A4513225A57292 /* Thermal Inspector iOS */,
+				6F0E563E4CC41EC5CE58215F /* Thermal Inspector Tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0321DE973A5A27BEF95FB1C2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D8BD70D57C27D3636208225 /* Assets.xcassets in Resources */,
+				46C50E7188FC6027831E3178 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		26599CE40FA357A7265544EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9434C396B243AE2CAC8B550D /* Assets.xcassets in Resources */,
+				DDB2CD55D9DE135DCBDD0016 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0745C63D28D1D2099F6A0DB4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				773026B413A1ED7C2EFE4903 /* AnnotatedImageRenderer.swift in Sources */,
+				8EB81D118438EDE81B8FAFA8 /* AppModel.swift in Sources */,
+				E875001D02ED2F0F96A6EBA8 /* CalibrationMonitor.swift in Sources */,
+				8A9AE6322E2B8F4FA656ED72 /* CameraController.swift in Sources */,
+				495022787C50CA93066BF215 /* ColorBarView.swift in Sources */,
+				EF07EF3A5BE1C36BB15250F6 /* ContentView.swift in Sources */,
+				1F73809F9FCE8E2FFB5A3C4F /* DebugScreenshot.swift in Sources */,
+				D1955BA0A9943BF016C2891D /* FloatingToolPicker.swift in Sources */,
+				CAEF9D0EE6A07C614F8C184B /* HistoryChartView.swift in Sources */,
+				AF3FF5AB48B1A682090B3F4D /* InspectorView.swift in Sources */,
+				40BE60FF6E2FCEB13F798380 /* MacApp.swift in Sources */,
+				51A0469433B2B468C4EEC3E6 /* Measurements.swift in Sources */,
+				B928B49090903D481E2971EE /* P3AccessoryProtocol.swift in Sources */,
+				2339F7C98AC214CEB83C42B6 /* P3Camera.swift in Sources */,
+				4CEFC6B7865A9CE43983CFEC /* P3FrameAssembler.swift in Sources */,
+				D83C50BE420B84850445D2A7 /* P3Protocol.swift in Sources */,
+				730A58E35F6E7D40CBA74488 /* P3StreamParser.swift in Sources */,
+				01A50129FDBF7484878DBA80 /* Palette.swift in Sources */,
+				1B56907E10E63DFA2AD9A984 /* Preferences.swift in Sources */,
+				294C2581EA599FD03DA94F95 /* PreferencesView.swift in Sources */,
+				BB7370E16B0CAC243CCE8A1E /* Radiometry.swift in Sources */,
+				A1D479FA752E44183558F48C /* SimulatedCamera.swift in Sources */,
+				B58AD253A657DAC8727A1658 /* SnapshotExporter.swift in Sources */,
+				C2FF1B139F38878E6ABFB803 /* StatusBarView.swift in Sources */,
+				45DE3847933EFBC13ADA1176 /* TemperatureHistory.swift in Sources */,
+				290CF8C01279768E31AFD5D6 /* ThermalCamera.swift in Sources */,
+				5FA6127B76AE26207DF83D49 /* ThermalFrame.swift in Sources */,
+				C15371588282B1879F33AAB2 /* ThermalImageView.swift in Sources */,
+				39254770DFD37EB6F9817E0E /* ThermalRenderer.swift in Sources */,
+				B0BB0EDFEA36605480D377C4 /* USBDevice.swift in Sources */,
+				E898B9E174D79B6AFBF99F70 /* VideoRecorder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		84CEC76C46D5895F25FC17E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D1BE7E42E403ADED67B63B5 /* ThermalInspectorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF0CBCBE87F1C8A7D57DA338 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2604BF25E66D99D804B9A58E /* AccessoryCamera.swift in Sources */,
+				191AC2A323CB663FA8EC583A /* AnnotatedImageRenderer.swift in Sources */,
+				B301E4C1E62C710E5A867836 /* AppModel.swift in Sources */,
+				736D92C795A09B0132EBBF92 /* CalibrationMonitor.swift in Sources */,
+				93A0AF98E21DB90ED04FF34B /* CameraController.swift in Sources */,
+				D2083793623BCEA73CFF42B2 /* ColorBarView.swift in Sources */,
+				ADCB1690F035D71F7995ECDE /* ContentView.swift in Sources */,
+				5C9D1A7B4B85C67FAB0EE6FF /* FloatingToolPicker.swift in Sources */,
+				3FC1F30C39A4AD5C1C68841F /* HistoryChartView.swift in Sources */,
+				3A9240B31599FA5575AB3B7B /* InspectorView.swift in Sources */,
+				DE810001CAB3DD5D5352076B /* Measurements.swift in Sources */,
+				CCF840F47ED6C0CD86DD2721 /* P3AccessoryProtocol.swift in Sources */,
+				0AE2A8A3B5C34A790B06F23E /* P3FrameAssembler.swift in Sources */,
+				4B7706C7872C4E8011606287 /* P3Protocol.swift in Sources */,
+				AFA5FC765E2BFFCB2D929B30 /* P3StreamParser.swift in Sources */,
+				03C76CD1E4C9B1486B98E7CD /* Palette.swift in Sources */,
+				A4CF38A89F7B2B683634686E /* Preferences.swift in Sources */,
+				F804C8A2A0B4F6CC4C82A171 /* PreferencesView.swift in Sources */,
+				8DD396772DB5DE140A147EEE /* Radiometry.swift in Sources */,
+				5A1ECEAF6281B5E784CB3818 /* SimulatedCamera.swift in Sources */,
+				D6215B9F3B13D24384D9923D /* SnapshotExporter.swift in Sources */,
+				308ABD3AAAD3BDD80F36447E /* StatusBarView.swift in Sources */,
+				E398A0D17004AF22F917B094 /* TemperatureHistory.swift in Sources */,
+				CD19385ECEED7146545A36C9 /* ThermalCamera.swift in Sources */,
+				BF22B811F1516F79C239B3A3 /* ThermalFrame.swift in Sources */,
+				6CC0D4259B0C469FF02CC5A6 /* ThermalImageView.swift in Sources */,
+				09AC40F1BA9B65343B4407B0 /* ThermalInspectorApp.swift in Sources */,
+				5ABA0BFF0D05210CB6B71A86 /* ThermalRenderer.swift in Sources */,
+				E36453AEB67930C5A2A7B04E /* VideoRecorder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F7BC6EC6EF8A34ECCFFA5BBF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 50987482AD4F4DF9B28317D8 /* Thermal Inspector */;
+			targetProxy = 251CACCA21F7E08A5CAC68F6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2E9E624415331AB9A8AFA997 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = local.thermalinspector.ThermalInspectorTests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Thermal Inspector.app/Contents/MacOS/Thermal Inspector";
+			};
+			name = Debug;
+		};
+		50AF7EADF269CB6CC5F42E3E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ThermalInspector/Platform/macOS/ThermalInspector.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ThermalInspector/Platform/iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Thermal Inspector";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = local.thermalinspector.app;
+				PRODUCT_NAME = "Thermal Inspector";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		545AEAF324BAC4D770EED53D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ThermalInspector/Platform/macOS/ThermalInspector.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ThermalInspector/Platform/iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Thermal Inspector";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = local.thermalinspector.app;
+				PRODUCT_NAME = "Thermal Inspector";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		9579E1DA138AC00873426833 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		CBFC960F946DDF617D18F4FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-iOS";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ThermalInspector/Platform/iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Thermal Inspector";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_UIFileSharingEnabled = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "local.thermalinspector.ios.$(DEVELOPMENT_TEAM:default=local)";
+				PRODUCT_NAME = "Thermal Inspector";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E345F0D6C93D17BFAFA1DDCA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = local.thermalinspector.ThermalInspectorTests;
+				SDKROOT = macosx;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Thermal Inspector.app/Contents/MacOS/Thermal Inspector";
+			};
+			name = Release;
+		};
+		E9A34D80EFB76FC0FD54FCF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 0.1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		FA0E33FA3A197949CFB87114 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-iOS";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ThermalInspector/Platform/iOS/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Thermal Inspector";
+				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
+				INFOPLIST_KEY_UIFileSharingEnabled = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "local.thermalinspector.ios.$(DEVELOPMENT_TEAM:default=local)";
+				PRODUCT_NAME = "Thermal Inspector";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		215CFA038065AC9E1C49D501 /* Build configuration list for PBXNativeTarget "Thermal Inspector Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2E9E624415331AB9A8AFA997 /* Debug */,
+				E345F0D6C93D17BFAFA1DDCA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		2554E40B20F9988C5A72BA7E /* Build configuration list for PBXProject "Thermal Inspector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E9A34D80EFB76FC0FD54FCF9 /* Debug */,
+				9579E1DA138AC00873426833 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		53A1039768C70A315982411B /* Build configuration list for PBXNativeTarget "Thermal Inspector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				545AEAF324BAC4D770EED53D /* Debug */,
+				50AF7EADF269CB6CC5F42E3E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DC7E2E5C3BADCA23096841F4 /* Build configuration list for PBXNativeTarget "Thermal Inspector iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBFC960F946DDF617D18F4FD /* Debug */,
+				FA0E33FA3A197949CFB87114 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B2476DC750F4DE3F2E608C8A /* Project object */;
+}

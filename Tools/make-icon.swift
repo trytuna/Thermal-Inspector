@@ -1,12 +1,18 @@
 // Draws the app icon (1024 × 1024 PNG): a chip seen through a thermal camera,
 // in the app's "Iron" palette, with a measurement crosshair on its hot spot.
 //
-// Usage: swift Tools/make-icon.swift <output.png>
+// Usage: swift Tools/make-icon.swift <output.png> [--ios]
+//
+// macOS icons have a rounded body with a shadow on a transparent canvas.
+// With --ios the artwork fills the whole square without transparency –
+// iOS rounds the corners itself.
 import AppKit
 import CoreGraphics
 
 let size = 1024
-let outputPath = CommandLine.arguments.dropFirst().first ?? "AppIcon-1024.png"
+let arguments = CommandLine.arguments.dropFirst()
+let isIOS = arguments.contains("--ios")
+let outputPath = arguments.first { !$0.hasPrefix("--") } ?? "AppIcon-1024.png"
 
 // The "Iron" palette (cold → hot), same color stops as Palette.iron in the app.
 let ironStops: [(Double, Double, Double)] = [
@@ -23,8 +29,8 @@ func ironColor(_ t: Double) -> (UInt8, UInt8, UInt8) {
 }
 
 // Icon geometry (macOS icon grid: 824 pt body on a 1024 canvas).
-let body = CGRect(x: 100, y: 100, width: 824, height: 824)
-let bodyRadius: CGFloat = 185
+let body = isIOS ? CGRect(x: 0, y: 0, width: size, height: size) : CGRect(x: 100, y: 100, width: 824, height: 824)
+let bodyRadius: CGFloat = isIOS ? 0 : 185
 let chip = CGRect(x: 362, y: 362, width: 300, height: 300)
 let hotSpot = CGPoint(x: 560, y: 470)   // top-left based coordinates
 
@@ -67,20 +73,24 @@ let heatImage = CGImage(
 
 // MARK: Composition
 
+// iOS icons must not have an alpha channel.
+let alphaInfo: CGImageAlphaInfo = isIOS ? .noneSkipLast : .premultipliedLast
 let context = CGContext(data: nil, width: size, height: size, bitsPerComponent: 8, bytesPerRow: 0,
-                        space: CGColorSpace(name: CGColorSpace.sRGB)!, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
+                        space: CGColorSpace(name: CGColorSpace.sRGB)!, bitmapInfo: alphaInfo.rawValue)!
 // Work top-left based like the heat field.
 context.translateBy(x: 0, y: CGFloat(size))
 context.scaleBy(x: 1, y: -1)
 
 let bodyPath = CGPath(roundedRect: body, cornerWidth: bodyRadius, cornerHeight: bodyRadius, transform: nil)
 
-// Soft drop shadow
+// Soft drop shadow (macOS only)
 context.saveGState()
+if !isIOS {
 context.setShadow(offset: CGSize(width: 0, height: 12), blur: 28, color: CGColor(gray: 0, alpha: 0.45))
 context.addPath(bodyPath)
 context.setFillColor(CGColor(gray: 0.1, alpha: 1))
 context.fillPath()
+}
 context.restoreGState()
 
 // Thermal image, clipped to the icon body (drawn un-flipped so it matches the heat field)
@@ -132,11 +142,13 @@ let highlight = CGGradient(colorsSpace: CGColorSpace(name: CGColorSpace.sRGB)!,
 context.drawLinearGradient(highlight, start: CGPoint(x: 0, y: body.minY), end: CGPoint(x: 0, y: body.minY + 260), options: [])
 context.restoreGState()
 
-// Thin rim
+// Thin rim (macOS only)
+if !isIOS {
 context.addPath(bodyPath)
 context.setStrokeColor(CGColor(gray: 1, alpha: 0.12))
 context.setLineWidth(3)
 context.strokePath()
+}
 
 let image = context.makeImage()!
 let png = NSBitmapImageRep(cgImage: image).representation(using: .png, properties: [:])!

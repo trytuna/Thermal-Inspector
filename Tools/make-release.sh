@@ -17,7 +17,7 @@ ZIP="dist/Thermal-Inspector-$VERSION.zip"
 echo "Building Thermal Inspector $VERSION …"
 xcodegen generate --quiet
 rm -rf "$DERIVED_DATA"
-xcodebuild -project ThermalInspector.xcodeproj -scheme ThermalInspector -configuration Release \
+xcodebuild -project "Thermal Inspector.xcodeproj" -scheme "Thermal Inspector" -configuration Release \
     -derivedDataPath "$DERIVED_DATA" -destination "generic/platform=macOS" \
     ARCHS="arm64 x86_64" ONLY_ACTIVE_ARCH=NO \
     DEPLOYMENT_POSTPROCESSING=YES STRIP_INSTALLED_PRODUCT=YES \

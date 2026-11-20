@@ -171,9 +171,10 @@ private let sampleFrame = ThermalFrame(width: 3, height: 2, values: [1, 2, 3, 4,
     var monitor = CalibrationMonitor()
     #expect(monitor.update(counter: 10, meanTemperature: 300) == .normal)
     #expect(monitor.update(counter: 11, meanTemperature: 299.9) == .normal)
-    // The camera repeats its frame while the shutter is closed …
-    #expect(monitor.update(counter: 11, meanTemperature: 299.9) == .frozen)
-    #expect(monitor.update(counter: 11, meanTemperature: 299.9) == .frozen)
+    // The camera repeats its frame while the shutter is closed (about 19 frames) …
+    for _ in 0..<CalibrationMonitor.minimumFreezeFrames {
+        #expect(monitor.update(counter: 11, meanTemperature: 299.9) == .frozen)
+    }
     #expect(monitor.isCalibrating)
     // … then continues with a corrected image.
     let event = monitor.update(counter: 17, meanTemperature: 304.4)
@@ -196,6 +197,15 @@ private let sampleFrame = ThermalFrame(width: 3, height: 2, values: [1, 2, 3, 4,
     // After a manual shutter, a jump is the calibration.
     monitor.expectManualCalibration()
     #expect(monitor.update(counter: 25, meanTemperature: 301) == .calibrated(correction: 1))
+}
+
+@Test func calibrationMonitorIgnoresSingleRepeatedFrames() {
+    var monitor = CalibrationMonitor()
+    _ = monitor.update(counter: 10, meanTemperature: 300)
+    // Seen on the Mac without any calibration: one frame twice, then on as usual.
+    #expect(monitor.update(counter: 10, meanTemperature: 300) == .frozen)
+    #expect(monitor.update(counter: 11, meanTemperature: 300) == .normal)
+    #expect(monitor.lastCalibration == nil)
 }
 
 @Test func calibrationMonitorHandlesCounterWrapAround() {
@@ -238,4 +248,68 @@ private let sampleFrame = ThermalFrame(width: 3, height: 2, values: [1, 2, 3, 4,
     model.addSpot(at: PixelPoint(x: 0, y: 0))
     model.moveSpot(id: model.spots[0].id, to: PixelPoint(x: 5, y: 6))
     #expect(model.spots[0].point == PixelPoint(x: 5, y: 6))
+}
+
+// MARK: - Stream parser (iOS External Accessory)
+
+@Test func streamParserFindsFramesInArbitraryChunks() {
+    let model = CameraModel.p1
+    let first = makeUSBFrame(model: model, frameCounter: 1, temperatureRaw: 100)
+    let second = makeUSBFrame(model: model, frameCounter: 2, temperatureRaw: 200)
+    // Garbage before, between and a half frame after – then cut into odd-sized pieces.
+    let stream = [UInt8](repeating: 0x55, count: 37) + first + [0x0C, 0x8C, 1, 2, 3] + second + Array(first.prefix(1000))
+
+    var parser = P3StreamParser(model: model)
+    var frames: [RawThermalFrame] = []
+    for start in stride(from: 0, to: stream.count, by: 4093) {
+        frames += parser.append(stream[start..<min(start + 4093, stream.count)])
+    }
+
+    #expect(frames.map(\.frameNumber) == [1, 2])
+    #expect(frames[1].values.allSatisfy { $0 == 200 })
+    #expect(parser.skippedBytes == 37 + 5)
+}
+
+@Test func calibrationMonitorIgnoresCounterThatNeverChanges() {
+    var monitor = CalibrationMonitor()
+    let start = Date()
+    _ = monitor.update(counter: 7, meanTemperature: 300, now: start)
+    #expect(monitor.update(counter: 7, meanTemperature: 300, now: start.addingTimeInterval(1)) == .frozen)
+    #expect(monitor.update(counter: 7, meanTemperature: 300, now: start.addingTimeInterval(5)) == .normal)
+    #expect(monitor.update(counter: 7, meanTemperature: 300, now: start.addingTimeInterval(6)) == .normal)
+}
+
+/// Packets recorded between the official iOS app and the camera (docs/HARDWARE-NOTES.md).
+@Test func accessoryPacketsMatchRecordedTraffic() {
+    func bytes(_ hex: String) -> [UInt8] {
+        stride(from: 0, to: hex.count, by: 2).map {
+            let start = hex.index(hex.startIndex, offsetBy: $0)
+            return UInt8(hex[start..<hex.index(start, offsetBy: 2)], radix: 16)!
+        }
+    }
+    let command = bytes("10024100010000000000000000000000")
+    #expect(P3AccessoryProtocol.packet(command: command, sequence: 1, isFirst: true)
+            == bytes("01fe000010024100010000000000000000000000783d"))
+    #expect(P3AccessoryProtocol.packet(command: bytes("10044700300000000000000000000000"), sequence: 2, isFirst: false)
+            == bytes("02ff000010044700300000000000000000000000f1ba"))
+    // Shutter and gain as sent by the official app.
+    #expect(P3AccessoryProtocol.packet(command: P3AccessoryProtocol.shutter, sequence: 5, isFirst: false)
+            == bytes("05ff000010024300000000000000000000000000cfc8"))
+    #expect(P3AccessoryProtocol.packet(command: P3AccessoryProtocol.gainLow, sequence: 8, isFirst: false)
+            == bytes("08ff0000012f41000000000000000000000000003c3a"))
+    #expect(P3AccessoryProtocol.packet(command: P3AccessoryProtocol.gainHigh, sequence: 9, isFirst: false)
+            == bytes("09ff0000012f41000100000000000000000000004939"))
+    #expect(P3AccessoryProtocol.packet(command: P3AccessoryProtocol.automaticShutter(false), sequence: 5, isFirst: false)
+            == bytes("05ff0000100241000000000000000000000000000d3e"))
+    #expect(P3AccessoryProtocol.packet(command: P3AccessoryProtocol.automaticShutter(true), sequence: 1, isFirst: true)
+            == bytes("01fe000010024100010000000000000000000000783d"))
+    // Brightness 48 and anti-burn protection, as the official app sends them on connect.
+    #expect(P3AccessoryProtocol.packet(command: P3AccessoryProtocol.imageAdjustment(.brightness, value: 48), sequence: 2, isFirst: false)
+            == bytes("02ff000010044700300000000000000000000000f1ba"))
+    #expect(P3AccessoryProtocol.packet(command: P3AccessoryProtocol.imageAdjustment(.contrast, value: 50), sequence: 3, isFirst: false)
+            == bytes("03ff000010044a00320000000000000000000000b4d1"))
+    #expect(P3AccessoryProtocol.packet(command: P3AccessoryProtocol.burnProtection(true), sequence: 4, isFirst: false)
+            == bytes("04ff000010034b000100000000000000000000002d8e"))
+    // Same checksum as the USB commands on the Mac.
+    #expect(P3AccessoryProtocol.crc16XModem(Array(P3Command.gainHigh.prefix(16))) == 0x3949)
 }

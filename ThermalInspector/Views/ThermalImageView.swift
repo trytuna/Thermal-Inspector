@@ -92,18 +92,24 @@ struct ThermalImageView: View {
                         isOverMovableMeasurement = false
                     }
                 }
+                #if os(macOS)
                 .pointerStyle(movedMeasurement != nil ? .grabActive : isOverMovableMeasurement ? .grabIdle : nil)
+                #endif
                 .gesture(clickAndDragGesture(layout: layout))
+                #if os(macOS)
+                // On iOS a long press would compete with dragging measurements.
                 .contextMenu { contextMenu }
-                .focusable()
-                .focusEffectDisabled()
-                .focused($isFocused)
-                .onAppear { isFocused = true }
+                #endif
             } else {
                 placeholder
                     .frame(width: geometry.size.width, height: geometry.size.height)
             }
         }
+        // Take the keyboard focus at launch – also before the camera delivers an image.
+        .focusable()
+        .focusEffectDisabled()
+        .focused($isFocused)
+        .onAppear { isFocused = true }
     }
 
     private func clickAndDragGesture(layout: ImageLayout) -> some Gesture {
@@ -121,6 +127,10 @@ struct ThermalImageView: View {
                 }
             }
             .onEnded { drag in
+                #if os(iOS)
+                // Touch has no hover: the readout is only shown while the finger is down.
+                model.hoverPoint = nil
+                #endif
                 switch model.tool {
                 case .inspect:
                     movedMeasurement = nil
@@ -183,17 +193,22 @@ struct ThermalImageView: View {
             } else {
                 Image(systemName: "camera.badge.ellipsis")
                     .font(.system(size: 48))
-                    .foregroundStyle(.secondary)
             }
             Text(model.connectionState.description)
                 .font(.title3)
-                .foregroundStyle(.secondary)
             if model.cameraSource != .simulation {
                 Button("Try without a camera (demo)") { model.cameraSource = .simulation }
+                    #if os(macOS)
                     .buttonStyle(.link)
+                    #else
+                    .buttonStyle(.borderless)
+                    #endif
             }
         }
         .multilineTextAlignment(.center)
+        // Light colors: the placeholder sits on the black image background.
+        .foregroundStyle(.white.opacity(0.75))
+        .tint(.cyan)
         .padding()
     }
 }
@@ -246,7 +261,12 @@ private struct MeasurementOverlay: View {
                     text += "  (\(TemperatureFormat.absolute(absolute)))"
                 }
                 let point = layout.viewPoint(for: hover)
+                #if os(iOS)
+                // Above the finger, so it is not covered while touching the image.
+                drawLabel(text, at: point + CGPoint(x: 0, y: -44), anchor: .bottom, in: &context)
+                #else
                 drawLabel(text, at: point + CGPoint(x: 14, y: 14), anchor: .topLeading, in: &context)
+                #endif
             }
         }
     }

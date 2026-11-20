@@ -1,5 +1,8 @@
-import AppKit
+import Foundation
 import Observation
+#if os(macOS)
+import AppKit
+#endif
 
 /// The app's user interface language.
 enum AppLanguage: String, CaseIterable, Identifiable {
@@ -32,7 +35,8 @@ final class Preferences {
 
     // MARK: General
 
-    /// Takes effect after restarting the app.
+    /// Takes effect after restarting the app. (On iOS the language is chosen in the
+    /// system Settings app, as usual there.)
     var language: AppLanguage {
         didSet {
             defaults.set(language.rawValue, forKey: Key.language)
@@ -51,6 +55,28 @@ final class Preferences {
     /// Restore palette, emissivity, orientation etc. from the last session.
     var rememberSettings: Bool {
         didSet { defaults.set(rememberSettings, forKey: Key.rememberSettings) }
+    }
+
+    // MARK: Camera
+
+    /// Whether the camera recalibrates itself about every 90 seconds. Off keeps the
+    /// image free of sudden jumps (e.g. for recordings), but readings drift slowly.
+    var automaticShutter: Bool {
+        didSet { defaults.set(automaticShutter, forKey: Key.automaticShutter) }
+    }
+
+    /// The camera closes its shutter when it sees the sun, to protect the sensor.
+    var burnProtection: Bool {
+        didSet { defaults.set(burnProtection, forKey: Key.burnProtection) }
+    }
+
+    /// Settings of the camera's grayscale image. Missing ones keep the camera's own value.
+    var imageAdjustments: [ImageAdjustment: Int] {
+        didSet {
+            for adjustment in ImageAdjustment.allCases {
+                defaults.set(imageAdjustments[adjustment] ?? -1, forKey: Key.imageAdjustment(adjustment))
+            }
+        }
     }
 
     // MARK: Export
@@ -97,6 +123,13 @@ final class Preferences {
     private static let defaultValues: [String: Any] = [
         Key.language: AppLanguage.system.rawValue,
         Key.rememberSettings: true,
+        Key.automaticShutter: true,
+        Key.burnProtection: true,
+        // Brightness and contrast as the official app sets them; −1 = camera's own value.
+        Key.imageAdjustment(.brightness): 50,
+        Key.imageAdjustment(.contrast): 50,
+        Key.imageAdjustment(.detailEnhancement): -1,
+        Key.imageAdjustment(.noiseReduction): -1,
         Key.outputFolder: SnapshotExporter.defaultOutputFolder.path,
         Key.saveTemperatureCSV: true,
         Key.saveMetadataJSON: true,
@@ -115,7 +148,20 @@ final class Preferences {
         language = storedLanguage
         launchLanguage = storedLanguage
         rememberSettings = defaults.bool(forKey: Key.rememberSettings)
+        automaticShutter = defaults.bool(forKey: Key.automaticShutter)
+        burnProtection = defaults.bool(forKey: Key.burnProtection)
+        var adjustments: [ImageAdjustment: Int] = [:]
+        for adjustment in ImageAdjustment.allCases {
+            let value = defaults.integer(forKey: Key.imageAdjustment(adjustment))
+            if value >= 0 { adjustments[adjustment] = value }
+        }
+        imageAdjustments = adjustments
+        #if os(macOS)
         outputFolder = URL(fileURLWithPath: defaults.string(forKey: Key.outputFolder) ?? "", isDirectory: true)
+        #else
+        // The Documents path changes with every install, so it is never stored on iOS.
+        outputFolder = SnapshotExporter.defaultOutputFolder
+        #endif
         saveTemperatureCSV = defaults.bool(forKey: Key.saveTemperatureCSV)
         saveMetadataJSON = defaults.bool(forKey: Key.saveMetadataJSON)
         snapshotScale = defaults.integer(forKey: Key.snapshotScale)
@@ -131,6 +177,9 @@ final class Preferences {
         for key in Self.defaultValues.keys { defaults.removeObject(forKey: key) }
         language = .system
         rememberSettings = true
+        automaticShutter = true
+        burnProtection = true
+        imageAdjustments = [.brightness: 50, .contrast: 50]
         outputFolder = SnapshotExporter.defaultOutputFolder
         saveTemperatureCSV = true
         saveMetadataJSON = true
@@ -140,6 +189,7 @@ final class Preferences {
         historySampleInterval = 0.2
     }
 
+    #if os(macOS)
     /// Asks the user for a new output folder.
     func chooseOutputFolder() {
         let panel = NSOpenPanel()
@@ -161,11 +211,15 @@ final class Preferences {
             DispatchQueue.main.async { NSApp.terminate(nil) }
         }
     }
+    #endif
 
     private enum Key {
         static let language = "language"
         static let appleLanguages = "AppleLanguages"
         static let rememberSettings = "rememberSettings"
+        static let automaticShutter = "automaticShutter"
+        static let burnProtection = "burnProtection"
+        static func imageAdjustment(_ adjustment: ImageAdjustment) -> String { "image_" + adjustment.rawValue }
         static let outputFolder = "outputFolder"
         static let saveTemperatureCSV = "saveTemperatureCSV"
         static let saveMetadataJSON = "saveMetadataJSON"

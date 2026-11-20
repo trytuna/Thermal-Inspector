@@ -1,27 +1,66 @@
 import Foundation
 
-/// Which camera to use.
+/// Which camera to use. The available sources depend on the platform.
 enum CameraSource: String, CaseIterable, Identifiable, Sendable {
+    #if os(macOS)
+    /// Connected by USB, driven directly (IOUSBHost).
     case p3
     case p1
+    #else
+    /// Connected to an iPhone/iPad, driven as an MFi accessory (External Accessory).
+    case accessory
+    #endif
     case simulation
+
+    /// The camera used when nothing else was chosen.
+    #if os(macOS)
+    static let standard = CameraSource.p3
+    #else
+    static let standard = CameraSource.accessory
+    #endif
 
     var id: String { rawValue }
 
     var label: String {
         switch self {
+        #if os(macOS)
         case .p3: "ThermalMaster P3"
         case .p1: "ThermalMaster P1"
+        #else
+        case .accessory: "ThermalMaster P3"
+        #endif
         case .simulation: String(localized: "Demo (simulated board)")
         }
     }
 
-    fileprivate func makeCamera() -> ThermalCamera {
+    fileprivate func makeCamera(settings: CameraSettings) -> ThermalCamera {
         switch self {
-        case .p3: P3Camera(model: .p3)
-        case .p1: P3Camera(model: .p1)
-        case .simulation: SimulatedCamera()
+        #if os(macOS)
+        case .p3: P3Camera(model: .p3, settings: settings)
+        case .p1: P3Camera(model: .p1, settings: settings)
+        #else
+        case .accessory: AccessoryCamera(settings: settings)
+        #endif
+        case .simulation: SimulatedCamera(automaticCalibration: settings.automaticShutter)
         }
+    }
+}
+
+/// Settings the camera gets while connecting (they cannot be changed while streaming).
+struct CameraSettings: Sendable {
+    /// Whether the camera recalibrates itself about every 90 s.
+    var automaticShutter = true
+    var burnProtection = true
+    /// Image settings to apply; the camera keeps its own value for the others.
+    var imageAdjustments: [ImageAdjustment: Int] = [:]
+
+    /// The commands that apply these settings (except the automatic shutter, which
+    /// has to be sent before the stream starts).
+    var commands: [CameraCommand] {
+        [.setBurnProtection(burnProtection)]
+            + ImageAdjustment.allCases.compactMap { adjustment in
+                imageAdjustments[adjustment].map { .setImageAdjustment(adjustment, $0) }
+            }
     }
 }
 
@@ -50,15 +89,18 @@ final class CameraController: @unchecked Sendable {
     private var currentRun: Run?
 
     /// Starts streaming from `source`. Stops a previous run first.
-    func start(source: CameraSource) -> AsyncStream<CameraEvent> {
+    func start(source: CameraSource, settings: CameraSettings = CameraSettings()) -> AsyncStream<CameraEvent> {
         stop()
 
-        let (stream, continuation) = AsyncStream.makeStream(of: CameraEvent.self, bufferingPolicy: .bufferingNewest(8))
+        // Status events must never be lost, so the stream is unbounded. Frames cannot
+        // pile up anyway: the camera thread only sends a new one when the app has
+        // handled the previous ones (see `frameHandled()`).
+        let (stream, continuation) = AsyncStream.makeStream(of: CameraEvent.self, bufferingPolicy: .unbounded)
         let run = Run()
         lock.withLock { currentRun = run }
 
         let thread = Thread {
-            Self.runLoop(source: source, run: run, events: continuation)
+            Self.runLoop(source: source, settings: settings, run: run, events: continuation)
         }
         thread.name = "Camera"
         thread.qualityOfService = .userInteractive
@@ -81,6 +123,11 @@ final class CameraController: @unchecked Sendable {
         if waitUntilClosed { run?.waitUntilFinished(timeout: timeout) }
     }
 
+    /// Call after a `.frame` event was processed. Until then, newer frames are skipped.
+    func frameHandled() {
+        lock.withLock { currentRun }?.frameHandled()
+    }
+
     /// Queues a command; it is executed on the camera thread between two frames.
     func send(_ command: CameraCommand) {
         lock.withLock { currentRun }?.enqueue(command)
@@ -88,30 +135,58 @@ final class CameraController: @unchecked Sendable {
 
     // MARK: Camera thread
 
-    private static func runLoop(source: CameraSource, run: Run, events: AsyncStream<CameraEvent>.Continuation) {
+    private static func runLoop(source: CameraSource, settings: CameraSettings, run: Run,
+                                events: AsyncStream<CameraEvent>.Continuation) {
         defer {
             events.finish()
             run.markFinished()
         }
 
+        // Looking for the camera happens quietly in the background: the app only hears
+        // about it when something changes (camera found, a different error), so the
+        // status does not flicker every second while nothing is plugged in.
+        var lastStatus: Status?
+        func report(_ status: Status) {
+            guard status != lastStatus else { return }
+            lastStatus = status
+            events.yield(status.event)
+        }
+
         while !run.isCancelled {
-            let camera = source.makeCamera()
+            let camera = source.makeCamera(settings: settings)
             do {
-                events.yield(.connecting)
                 let info = try camera.open()
+                // Keep showing an error while retrying, instead of alternating with "Connecting".
+                if lastStatus == nil || lastStatus == .searching { report(.connecting) }
                 try camera.startStreaming()
+                lastStatus = nil
                 events.yield(.streaming(info))
                 try streamFrames(from: camera, run: run, events: events)
                 camera.close()
             } catch {
                 camera.close()
                 guard !run.isCancelled else { break }
-                if case USBError.deviceNotFound = error {
-                    events.yield(.searching)
+                if case CameraError.notConnected = error {
+                    report(.searching)
                 } else {
-                    events.yield(.failure(error.localizedDescription))
+                    report(.failure(error.localizedDescription))
                 }
                 run.sleep(seconds: 1)
+            }
+        }
+    }
+
+    /// The status events of the retry loop, comparable so repeats can be left out.
+    private enum Status: Equatable {
+        case searching
+        case connecting
+        case failure(String)
+
+        var event: CameraEvent {
+            switch self {
+            case .searching: .searching
+            case .connecting: .connecting
+            case let .failure(message): .failure(message)
             }
         }
     }
@@ -131,7 +206,8 @@ final class CameraController: @unchecked Sendable {
             }
 
             do {
-                if let frame = try camera.readFrame() {
+                // Skip frames while the app is still busy with earlier ones (keeps the image current).
+                if let frame = try camera.readFrame(), run.reserveFrameSlot() {
                     events.yield(.frame(frame))
                 }
                 consecutiveErrors = 0
@@ -149,6 +225,9 @@ final class CameraController: @unchecked Sendable {
         private var cancelled = false
         private var commands: [CameraCommand] = []
         private let finished = DispatchSemaphore(value: 0)
+        /// Frames sent to the app but not handled yet.
+        private var framesInFlight = 0
+        private let maximumFramesInFlight = 2
 
         var isCancelled: Bool { lock.withLock { cancelled } }
 
@@ -160,7 +239,31 @@ final class CameraController: @unchecked Sendable {
 
         func cancel() { lock.withLock { cancelled = true } }
 
-        func enqueue(_ command: CameraCommand) { lock.withLock { commands.append(command) } }
+        /// True (and counted) if another frame may be sent to the app.
+        func reserveFrameSlot() -> Bool {
+            lock.withLock {
+                guard framesInFlight < maximumFramesInFlight else { return false }
+                framesInFlight += 1
+                return true
+            }
+        }
+
+        func frameHandled() {
+            lock.withLock { framesInFlight = max(framesInFlight - 1, 0) }
+        }
+
+        func enqueue(_ command: CameraCommand) {
+            lock.withLock {
+                // A slider sends many values – only the newest one per setting matters.
+                if case let .setImageAdjustment(adjustment, _) = command {
+                    commands.removeAll {
+                        if case .setImageAdjustment(adjustment, _) = $0 { return true }
+                        return false
+                    }
+                }
+                commands.append(command)
+            }
+        }
 
         func takeCommands() -> [CameraCommand] {
             lock.withLock {

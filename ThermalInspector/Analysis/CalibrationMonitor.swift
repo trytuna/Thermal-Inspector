@@ -26,6 +26,13 @@ struct CalibrationMonitor {
 
     /// Corrections up to this size (K) count as "stable".
     static let stableCorrection: Float = 0.5
+    /// A calibration freezes the counter for about 0.8 s. If it stands still much
+    /// longer, the counter is not usable (e.g. the camera does not fill it in) and
+    /// is ignored – otherwise every frame would be dropped as "calibrating".
+    static let longestFreeze: TimeInterval = 3
+    /// A calibration repeats about 19 frames. Single repeated frames also happen
+    /// without one (USB timing) and are not counted as calibrations.
+    static let minimumFreezeFrames = 5
 
     private(set) var isCalibrating = false
     private(set) var lastCalibration: Date?
@@ -33,6 +40,9 @@ struct CalibrationMonitor {
 
     private var previousCounter: UInt16?
     private var previousMean: Float?
+    private var frozenSince: Date?
+    private var frozenFrames = 0
+    private var counterIsUnusable = false
     /// Set when the user triggered the shutter; the next counter jump is that calibration.
     private var manualCalibrationExpected = false
 
@@ -48,13 +58,24 @@ struct CalibrationMonitor {
             previousCounter = counter
             previousMean = meanTemperature
         }
-        guard let counter, let previousCounter, let previousMean else { return .normal }
+        guard !counterIsUnusable, let counter, let previousCounter, let previousMean else { return .normal }
 
         let step = counter &- previousCounter   // wraps around at 65535
         if step == 0 {
-            isCalibrating = true
+            let start = frozenSince ?? now
+            frozenSince = start
+            if now.timeIntervalSince(start) > Self.longestFreeze {
+                counterIsUnusable = true
+                isCalibrating = false
+                return .normal
+            }
+            frozenFrames += 1
+            if frozenFrames >= Self.minimumFreezeFrames { isCalibrating = true }
+            // Repeated frames carry nothing new, whether or not it is a calibration.
             return .frozen
         }
+        frozenSince = nil
+        frozenFrames = 0
 
         // A calibration has finished after a freeze, or – for a manual shutter – when the counter jumps.
         // A jump alone is not enough: the app itself may have skipped frames while it was busy.

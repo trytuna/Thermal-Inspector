@@ -37,10 +37,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 }
 
-extension Notification.Name {
-    static let appWillQuit = Notification.Name("ThermalInspector.appWillQuit")
-}
-
 /// Menu bar entries with keyboard shortcuts.
 struct AppCommands: Commands {
     let model: AppModel

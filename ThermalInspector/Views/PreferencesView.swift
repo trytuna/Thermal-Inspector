@@ -1,8 +1,17 @@
 import SwiftUI
+#if os(iOS)
+import UIKit
+#endif
 
-/// The Settings window (⌘,).
+/// The app settings: a Settings window with tabs on macOS (⌘,),
+/// a sheet with a list of pages on iPhone/iPad.
 struct PreferencesView: View {
+    #if os(iOS)
+    @Environment(\.dismiss) private var dismiss
+    #endif
+
     var body: some View {
+        #if os(macOS)
         TabView {
             Tab("General", systemImage: "gearshape") { GeneralPreferences() }
             Tab("Export", systemImage: "square.and.arrow.up") { ExportPreferences() }
@@ -10,6 +19,25 @@ struct PreferencesView: View {
         }
         .frame(width: 520)
         .fixedSize(horizontal: false, vertical: true)
+        #else
+        NavigationStack {
+            List {
+                NavigationLink { GeneralPreferences().navigationTitle("General") } label: {
+                    Label("General", systemImage: "gearshape")
+                }
+                NavigationLink { ExportPreferences().navigationTitle("Export") } label: {
+                    Label("Export", systemImage: "square.and.arrow.up")
+                }
+                NavigationLink { HistoryPreferences().navigationTitle("History") } label: {
+                    Label("History", systemImage: "chart.xyaxis.line")
+                }
+            }
+            .navigationTitle("App Settings")
+            .toolbar {
+                Button("Done") { dismiss() }
+            }
+        }
+        #endif
     }
 }
 
@@ -25,6 +53,7 @@ private struct GeneralPreferences: View {
 
         Form {
             Section {
+                #if os(macOS)
                 Picker("Language", selection: $preferences.language) {
                     ForEach(AppLanguage.allCases) { Text(verbatim: $0.name).tag($0) }
                 }
@@ -37,6 +66,14 @@ private struct GeneralPreferences: View {
                         Button("Restart Now") { preferences.relaunch() }
                     }
                 }
+                #else
+                // On iOS every app's language is chosen in the system Settings app.
+                Button("Language …") {
+                    if let url = URL(string: UIApplication.openSettingsURLString) {
+                        UIApplication.shared.open(url)
+                    }
+                }
+                #endif
             }
 
             Section {
@@ -71,6 +108,7 @@ private struct ExportPreferences: View {
         @Bindable var preferences = model.preferences
 
         Form {
+            #if os(macOS)
             Section {
                 LabeledContent("Output folder") {
                     HStack {
@@ -88,6 +126,14 @@ private struct ExportPreferences: View {
                     }
                 }
             }
+
+            #else
+            Section {
+                Text("Snapshots, videos and history exports are saved in the Files app under “On My iPhone/iPad → Thermal Inspector”.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+            #endif
 
             Section("Snapshot") {
                 LabeledContent("Files") {

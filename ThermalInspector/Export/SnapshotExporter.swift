@@ -1,5 +1,8 @@
-import AppKit
 import CoreGraphics
+import Foundation
+#if os(macOS)
+import AppKit
+#endif
 import ImageIO
 import UniformTypeIdentifiers
 
@@ -42,9 +45,15 @@ enum SnapshotExporter {
         var note: String?
     }
 
+    /// macOS: ~/Pictures/Thermal Inspector.
+    /// iOS: the app's Documents folder, visible in the Files app under "Thermal Inspector".
     static var defaultOutputFolder: URL {
+        #if os(macOS)
         let pictures = FileManager.default.urls(for: .picturesDirectory, in: .userDomainMask).first!
         return pictures.appendingPathComponent("Thermal Inspector", isDirectory: true)
+        #else
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        #endif
     }
 
     /// A new file URL like ".../thermal-2026-11-19_14-03-22.png".
@@ -98,6 +107,7 @@ enum SnapshotExporter {
         return lines.joined(separator: "\n") + "\n"
     }
 
+    #if os(macOS)
     static func revealInFinder(_ url: URL) {
         NSWorkspace.shared.activateFileViewerSelecting([url])
     }
@@ -106,4 +116,5 @@ enum SnapshotExporter {
         try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
         NSWorkspace.shared.open(folder)
     }
+    #endif
 }

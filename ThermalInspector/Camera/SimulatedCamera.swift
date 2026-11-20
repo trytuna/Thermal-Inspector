@@ -17,6 +17,11 @@ final class SimulatedCamera: ThermalCamera {
     // Simulated drift and automatic recalibration, like the real P3 (see CalibrationMonitor).
     private let calibrationInterval: TimeInterval = 45
     private let calibrationDuration: TimeInterval = 0.8
+    private let automaticCalibration: Bool
+
+    init(automaticCalibration: Bool = true) {
+        self.automaticCalibration = automaticCalibration
+    }
     private var lastCalibration = Date()
     private var counter: UInt16 = 0
     private var lastFrame: RawThermalFrame?
@@ -86,7 +91,7 @@ final class SimulatedCamera: ThermalCamera {
         let secondsSinceCalibration = now.timeIntervalSince(lastCalibration)
 
         // During calibration the real camera repeats its last frame.
-        if secondsSinceCalibration >= calibrationInterval, let lastFrame {
+        if automaticCalibration, secondsSinceCalibration >= calibrationInterval, let lastFrame {
             if secondsSinceCalibration < calibrationInterval + calibrationDuration { return lastFrame }
             lastCalibration = now
             counter &+= 6
@@ -137,10 +142,13 @@ final class SimulatedCamera: ThermalCamera {
     }
 
     func perform(_ command: CameraCommand) throws {
-        if case .triggerShutter = command {
+        switch command {
+        case .triggerShutter:
             shutterClosedUntil = Date().addingTimeInterval(0.4)
             lastCalibration = Date()
             counter &+= 6
+        case .setGain, .setImageAdjustment, .setBurnProtection:
+            break
         }
     }
 

@@ -4,6 +4,12 @@ import SwiftUI
 /// Temperature over time for the frame maximum and all measurement points.
 struct HistoryChartView: View {
     @Environment(AppModel.self) private var model
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) private var sizeClass
+    private var isCompact: Bool { sizeClass == .compact }
+    #else
+    private let isCompact = false
+    #endif
 
     private let windows: [(label: String, seconds: TimeInterval)] = [
         ("30 s", 30), ("1 min", 60), ("5 min", 300), ("15 min", 900),
@@ -16,19 +22,29 @@ struct HistoryChartView: View {
 
         VStack(alignment: .leading, spacing: 6) {
             HStack {
-                Text("Temperature History")
-                    .font(.headline)
-                Spacer()
+                if !isCompact {
+                    Text("Temperature History")
+                        .font(.headline)
+                    Spacer()
+                }
                 Picker("Time Span", selection: $model.historyWindow) {
                     ForEach(windows, id: \.seconds) { Text(verbatim: $0.label).tag($0.seconds) }
                 }
                 .pickerStyle(.segmented)
                 .labelsHidden()
-                .frame(width: 260)
+                .frame(maxWidth: 260)
 
-                Button("Export CSV") { model.exportHistory() }
+                // On narrow screens the buttons only show their symbols.
+                Group {
+                    Button { model.exportHistory() } label: {
+                        Label("Export CSV", systemImage: "square.and.arrow.down")
+                    }
                     .disabled(model.history.isEmpty)
-                Button("Clear") { model.clearHistory() }
+                    Button { model.clearHistory() } label: {
+                        Label("Clear", systemImage: "trash")
+                    }
+                }
+                .labelStyle(isCompact ? AnyLabelStyle(.iconOnly) : AnyLabelStyle(.titleOnly))
             }
 
             if points.isEmpty {
@@ -55,7 +71,7 @@ struct HistoryChartView: View {
                 .chartYScale(domain: .automatic(includesZero: false))
                 .chartYAxisLabel { Text(verbatim: "°C") }
                 .chartXAxis {
-                    AxisMarks(values: .automatic(desiredCount: 6)) { _ in
+                    AxisMarks(values: .automatic(desiredCount: isCompact ? 3 : 6)) { _ in
                         AxisGridLine()
                         AxisValueLabel(format: .dateTime.hour().minute().second())
                     }
@@ -65,5 +81,18 @@ struct HistoryChartView: View {
         }
         .padding(.horizontal, 12)
         .padding(.vertical, 8)
+    }
+}
+
+/// Lets a view switch between label styles at runtime.
+private struct AnyLabelStyle: LabelStyle {
+    private let makeBodyClosure: (Configuration) -> AnyView
+
+    init(_ style: some LabelStyle) {
+        makeBodyClosure = { AnyView(style.makeBody(configuration: $0)) }
+    }
+
+    func makeBody(configuration: Configuration) -> some View {
+        makeBodyClosure(configuration)
     }
 }

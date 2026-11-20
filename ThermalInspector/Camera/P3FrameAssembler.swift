@@ -16,6 +16,8 @@ struct RawThermalFrame: Sendable {
     /// The camera's internal frame counter. It stops while the camera repeats the
     /// last frame during its automatic recalibration. Nil if unavailable.
     var cameraFrameCounter: UInt16?
+    /// The two metadata rows as 16-bit words (see docs/HARDWARE-NOTES.md). Empty if unavailable.
+    var metadata: [UInt16] = []
 }
 
 /// Reassembles complete frames from the stream of bulk USB transfers.
@@ -71,41 +73,53 @@ struct P3FrameAssembler {
         return finishFrame()
     }
 
-    /// Validates the markers of the buffered frame and extracts the temperature image.
+    /// Validates the markers of the buffered frame and extracts the images.
     private mutating func finishFrame() -> RawThermalFrame? {
-        buffer.withUnsafeBytes { bytes -> RawThermalFrame? in
-            let markerSize = P3Protocol.markerSize
-            let startMarker = FrameMarker(bytes: UnsafeRawBufferPointer(rebasing: bytes[0..<markerSize]))
-            let endMarker = FrameMarker(bytes: UnsafeRawBufferPointer(rebasing: bytes[(bytes.count - markerSize)...]))
-
-            // Start and end marker must belong to the same frame.
-            guard startMarker.frameCounter == endMarker.frameCounter else {
-                droppedFrames += 1
-                return nil
-            }
-
-            let width = model.width
-            let height = model.height
-            let pixelCount = width * height
-
-            let temperatureOffset = markerSize + model.temperatureRowStart * width * 2
-            var values = [UInt16](repeating: 0, count: pixelCount)
-            for index in values.indices {
-                values[index] = bytes.loadUnaligned(fromByteOffset: temperatureOffset + index * 2, as: UInt16.self).littleEndian
-            }
-
-            // The detail image is YUYV with constant chroma: the low byte of each pixel is the gray value.
-            var detailImage = [UInt8](repeating: 0, count: pixelCount)
-            for index in detailImage.indices {
-                detailImage[index] = bytes[markerSize + index * 2]
-            }
-
-            let metadataOffset = markerSize + height * width * 2
-            let counter = bytes.loadUnaligned(fromByteOffset: metadataOffset + P3Protocol.frameCounterWord * 2, as: UInt16.self).littleEndian
-
+        let frame = buffer.withUnsafeBytes { RawThermalFrame(frameBytes: $0, model: model) }
+        if frame == nil {
+            droppedFrames += 1
+        } else {
             completedFrames += 1
-            return RawThermalFrame(width: width, height: height, values: values, frameNumber: startMarker.frameCounter,
-                                   detailImage: detailImage, cameraFrameCounter: counter)
         }
+        return frame
+    }
+}
+
+extension RawThermalFrame {
+    /// Parses one complete frame: start marker + pixel data + end marker
+    /// (`model.frameReadSize` bytes). Returns nil if the markers do not belong together.
+    init?(frameBytes bytes: UnsafeRawBufferPointer, model: CameraModel) {
+        let markerSize = P3Protocol.markerSize
+        guard bytes.count >= model.frameReadSize else { return nil }
+        let frameBytes = UnsafeRawBufferPointer(rebasing: bytes[0..<model.frameReadSize])
+        let startMarker = FrameMarker(bytes: UnsafeRawBufferPointer(rebasing: frameBytes[0..<markerSize]))
+        let endMarker = FrameMarker(bytes: UnsafeRawBufferPointer(rebasing: frameBytes[(frameBytes.count - markerSize)...]))
+
+        // Start and end marker must belong to the same frame.
+        guard startMarker.frameCounter == endMarker.frameCounter else { return nil }
+
+        let width = model.width
+        let height = model.height
+        let pixelCount = width * height
+
+        let temperatureOffset = markerSize + model.temperatureRowStart * width * 2
+        var values = [UInt16](repeating: 0, count: pixelCount)
+        for index in values.indices {
+            values[index] = frameBytes.loadUnaligned(fromByteOffset: temperatureOffset + index * 2, as: UInt16.self).littleEndian
+        }
+
+        // The detail image is YUYV with constant chroma: the low byte of each pixel is the gray value.
+        var detailImage = [UInt8](repeating: 0, count: pixelCount)
+        for index in detailImage.indices {
+            detailImage[index] = frameBytes[markerSize + index * 2]
+        }
+
+        let metadataOffset = markerSize + height * width * 2
+        let metadata = (0..<(2 * width)).map {
+            frameBytes.loadUnaligned(fromByteOffset: metadataOffset + $0 * 2, as: UInt16.self).littleEndian
+        }
+
+        self.init(width: width, height: height, values: values, frameNumber: startMarker.frameCounter,
+                  detailImage: detailImage, cameraFrameCounter: metadata[P3Protocol.frameCounterWord], metadata: metadata)
     }
 }

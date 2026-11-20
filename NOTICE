@@ -3,8 +3,9 @@ Copyright 2026 Timo Schrappe and Thermal Inspector contributors
 
 Licensed under the Apache License, Version 2.0 (see LICENSE).
 
-The USB protocol implementation in ThermalInspector/Camera/ (P3Protocol.swift,
-P3FrameAssembler.swift, P3Camera.swift) is a Swift port of the Python driver
+The USB protocol implementation (ThermalInspector/Camera/P3Protocol.swift,
+ThermalInspector/Camera/P3FrameAssembler.swift and
+ThermalInspector/Platform/macOS/P3Camera.swift) is a Swift port of the Python driver
 from Thermal Camera Viewer <https://github.com/skywalker1905/thermal-camera-viewer>,
 Copyright Thermal Camera Viewer contributors, licensed under the Apache License,
 Version 2.0.

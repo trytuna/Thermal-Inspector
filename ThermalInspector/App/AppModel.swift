@@ -1,6 +1,11 @@
-import AppKit
+import Foundation
 import Observation
 import SwiftUI
+
+extension Notification.Name {
+    /// Posted when the app is about to quit, so the camera can be stopped cleanly.
+    static let appWillQuit = Notification.Name("ThermalInspector.appWillQuit")
+}
 
 /// Connection status shown in the UI.
 enum ConnectionState: Equatable {
@@ -64,7 +69,7 @@ final class AppModel {
     // MARK: - Camera
 
     /// Remembered between launches. Can be overridden with the launch argument `-cameraSource simulation`.
-    var cameraSource = CameraSource(rawValue: UserDefaults.standard.string(forKey: "cameraSource") ?? "") ?? .p3 {
+    var cameraSource = CameraSource(rawValue: UserDefaults.standard.string(forKey: "cameraSource") ?? "") ?? .standard {
         didSet {
             guard cameraSource != oldValue else { return }
             UserDefaults.standard.set(cameraSource.rawValue, forKey: "cameraSource")
@@ -79,8 +84,41 @@ final class AppModel {
         didSet { if gainMode != oldValue { cameraController.send(.setGain(gainMode)) } }
     }
 
-    /// Temperature range the sensor can measure in the current gain mode.
-    var sensorRange: ClosedRange<Float> { gainMode == .high ? -20...150 : 0...550 }
+    /// Whether the camera recalibrates itself about every 90 s (stored in the preferences).
+    /// The camera only accepts this while connecting, so changing it reconnects (a few seconds).
+    var automaticShutter: Bool {
+        get { preferences.automaticShutter }
+        set {
+            guard newValue != preferences.automaticShutter else { return }
+            preferences.automaticShutter = newValue
+            startCamera()
+        }
+    }
+
+    var burnProtection: Bool {
+        get { preferences.burnProtection }
+        set {
+            preferences.burnProtection = newValue
+            cameraController.send(.setBurnProtection(newValue))
+        }
+    }
+
+    /// The value of an image setting, nil while the camera keeps its own value.
+    func imageAdjustment(_ adjustment: ImageAdjustment) -> Int? {
+        preferences.imageAdjustments[adjustment]
+    }
+
+    func setImageAdjustment(_ adjustment: ImageAdjustment, to value: Int) {
+        // A slider reports the same rounded value many times while it moves.
+        guard preferences.imageAdjustments[adjustment] != value else { return }
+        preferences.imageAdjustments[adjustment] = value
+        cameraController.send(.setImageAdjustment(adjustment, value))
+    }
+
+    /// Range of the temperature sliders (color range, isotherm) in the current gain mode.
+    /// The low gain is specified for 100…600 °C, but the camera still reports colder
+    /// parts of the scene, so the sliders start at −20 °C there as well.
+    var sensorRange: ClosedRange<Float> { gainMode == .high ? -20...150 : -20...600 }
 
     // MARK: - Display settings
 
@@ -193,7 +231,10 @@ final class AppModel {
         autoRange.reset()
         calibration.reset()
 
-        let events = cameraController.start(source: cameraSource)
+        let events = cameraController.start(source: cameraSource,
+                                            settings: CameraSettings(automaticShutter: preferences.automaticShutter,
+                                                                     burnProtection: preferences.burnProtection,
+                                                                     imageAdjustments: preferences.imageAdjustments))
         cameraTask = Task { [weak self] in
             for await event in events {
                 self?.handle(event)
@@ -226,6 +267,7 @@ final class AppModel {
             if gainMode != .high { cameraController.send(.setGain(gainMode)) }
         case let .frame(frame):
             process(frame)
+            cameraController.frameHandled()
         case let .failure(message):
             connectionState = .failed(message)
         case let .message(message):
@@ -538,9 +580,11 @@ final class AppModel {
     /// Scale of the running recording (fixed when it starts, so the video size stays constant).
     private var videoScale = 3
 
+    #if os(macOS)
     func openOutputFolder() {
         SnapshotExporter.openFolder(preferences.outputFolder)
     }
+    #endif
 
     private func recordVideoFrame() {
         guard let videoRecorder, let scene = makeAnnotationScene(),

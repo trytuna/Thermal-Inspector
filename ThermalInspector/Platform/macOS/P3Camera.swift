@@ -2,6 +2,7 @@
 // Ported from Thermal Camera Viewer / p3-ir-camera (Apache-2.0) – see NOTICE.
 
 import Foundation
+import os
 
 /// Driver for the ThermalMaster P3 / P1 USB thermal cameras.
 ///
@@ -9,20 +10,28 @@ import Foundation
 /// IOUSBHost (via `USBDevice`) instead of libusb.
 final class P3Camera: ThermalCamera {
     let model: CameraModel
+    private let settings: CameraSettings
+    private let log = Logger(subsystem: "ThermalInspector", category: "USB")
 
     private var usb: USBDevice?
     private var assembler: P3FrameAssembler
     private var chunkBuffer: NSMutableData?
 
-    init(model: CameraModel) {
+    init(model: CameraModel, settings: CameraSettings = CameraSettings()) {
         self.model = model
+        self.settings = settings
         assembler = P3FrameAssembler(model: model)
     }
 
     // MARK: ThermalCamera
 
     func open() throws -> CameraInfo {
-        let usb = try USBDevice(vendorID: P3Protocol.vendorID, productID: model.productID)
+        let usb: USBDevice
+        do {
+            usb = try USBDevice(vendorID: P3Protocol.vendorID, productID: model.productID)
+        } catch USBError.deviceNotFound {
+            throw CameraError.notConnected
+        }
         try usb.configureIfNeeded()
         try usb.openInterface(P3Protocol.controlInterface)
         try usb.openInterface(P3Protocol.streamingInterface)
@@ -48,6 +57,9 @@ final class P3Camera: ThermalCamera {
 
         // Start from a defined state, in case a previous session did not stop the stream.
         try? usb.selectAlternateSetting(0, onInterface: P3Protocol.streamingInterface)
+
+        try sendSetting(P3AccessoryProtocol.automaticShutter(settings.automaticShutter))
+        for command in settings.commands { try perform(command) }
 
         try sendStartStream()
         Thread.sleep(forTimeInterval: 1.0)
@@ -76,18 +88,15 @@ final class P3Camera: ThermalCamera {
         return assembler.append(UnsafeRawBufferPointer(start: buffer.bytes, count: count))
     }
 
+
     func perform(_ command: CameraCommand) throws {
         switch command {
         case .triggerShutter:
             try sendCommand(P3Command.shutter)
             _ = try readStatus()
             try skipFrameAfterShutter()
-        case .setGain(.high):
-            try sendCommand(P3Command.gainHigh)
-            _ = try readStatus()
-        case .setGain(.low):
-            try sendCommand(P3Command.gainLow)
-            _ = try readStatus()
+        case .setGain, .setImageAdjustment, .setBurnProtection:
+            if let body = P3AccessoryProtocol.settingCommand(command) { try sendSetting(body) }
         }
     }
 
@@ -126,6 +135,19 @@ final class P3Camera: ThermalCamera {
         return String(decoding: text, as: UTF8.self).trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
+    /// Sends a 16-byte setting command (the camera gives no answer, only a status).
+    private func sendSetting(_ body: [UInt8]) throws {
+        try sendCommand(P3Command.withCRC(body))
+        var status = try readStatus()
+        if status == 4 {
+            // Right after plugging in, the camera sometimes is not ready yet – try once more.
+            Thread.sleep(forTimeInterval: 0.1)
+            try sendCommand(P3Command.withCRC(body))
+            status = try readStatus()
+        }
+        log.info("Sent \(body.prefix(6).map { String(format: "%02x", $0) }.joined(separator: " "), privacy: .public), status \(status)")
+    }
+
     private func sendStartStream() throws {
         try sendCommand(P3Command.startStream)
         _ = try readStatus()
@@ -151,7 +173,7 @@ final class P3Camera: ThermalCamera {
     }
 
     private func connectedDevice() throws -> USBDevice {
-        guard let usb else { throw USBError.deviceNotFound(vendorID: P3Protocol.vendorID, productID: model.productID) }
+        guard let usb else { throw CameraError.notConnected }
         return usb
     }
 }

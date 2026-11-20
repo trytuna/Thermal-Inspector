@@ -3,9 +3,15 @@ import SwiftUI
 /// Bottom bar: connection, frame rate, cursor temperature, frame statistics and messages.
 struct StatusBarView: View {
     @Environment(AppModel.self) private var model
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) private var sizeClass
+    private var isCompact: Bool { sizeClass == .compact }
+    #else
+    private let isCompact = false
+    #endif
 
     var body: some View {
-        HStack(spacing: 16) {
+        HStack(spacing: isCompact ? 10 : 16) {
             HStack(spacing: 6) {
                 Circle().fill(model.connectionState.color).frame(width: 8, height: 8)
                 Text(model.connectionState == .streaming ? String(format: "%.0f fps", model.framesPerSecond)
@@ -38,14 +44,18 @@ struct StatusBarView: View {
                     .lineLimit(1)
                     .truncationMode(.middle)
                 if let url = model.lastSavedURL {
+                    #if os(macOS)
                     Button("Show in Finder") { SnapshotExporter.revealInFinder(url) }
                         .buttonStyle(.link)
+                    #else
+                    ShareLink(item: url) { Label("Share", systemImage: "square.and.arrow.up") }
+                    #endif
                 }
             }
 
             Spacer()
 
-            if let hover = model.hoverPoint, let value = model.displayValue(at: hover) {
+            if !isCompact, let hover = model.hoverPoint, let value = model.displayValue(at: hover) {
                 Text("Cursor (\(hover.x), \(hover.y)): \(model.formatted(value))")
             }
 
@@ -55,7 +65,7 @@ struct StatusBarView: View {
             }
         }
         .lineLimit(1)
-        .font(.callout.monospacedDigit())
+        .font(isCompact ? .caption.monospacedDigit() : .callout.monospacedDigit())
         .padding(.horizontal, 12)
         .padding(.vertical, 6)
         .background(.bar)

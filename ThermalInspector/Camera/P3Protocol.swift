@@ -83,6 +83,12 @@ enum P3Command {
     /// Closes the shutter and runs a non-uniformity correction (NUC).
     static let shutter = bytes("01364300000000000000000000000000cd0b")
 
+    /// Appends the CRC to a 16-byte command.
+    static func withCRC(_ command: [UInt8]) -> [UInt8] {
+        let crc = P3AccessoryProtocol.crc16XModem(command)
+        return command + [UInt8(crc & 0xFF), UInt8(crc >> 8)]
+    }
+
     private static func bytes(_ hex: String) -> [UInt8] {
         var result: [UInt8] = []
         var index = hex.startIndex
@@ -101,7 +107,7 @@ enum P3Command {
 enum GainMode: String, CaseIterable, Identifiable, Codable, Sendable {
     /// −20 °C … 150 °C, higher sensitivity. Best for electronics.
     case high
-    /// 0 °C … 550 °C, lower sensitivity.
+    /// 100 °C … 600 °C, lower sensitivity (as the official app labels it).
     case low
 
     var id: String { rawValue }

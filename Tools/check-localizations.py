@@ -22,7 +22,7 @@ LANGUAGES = ["de"]
 
 
 def keys_used_in_code() -> set[str]:
-    pattern = str(ROOT / "build/**/ThermalInspector.build/**/*.stringsdata")
+    pattern = str(ROOT / "build/**/Thermal Inspector*.build/**/*.stringsdata")
     keys = set()
     for path in glob.glob(pattern, recursive=True):
         for entries in json.load(open(path)).get("tables", {}).values():

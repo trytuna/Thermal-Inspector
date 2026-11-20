@@ -43,7 +43,7 @@ private struct CameraSection: View {
 
             Picker("Range", selection: $model.gainMode) {
                 Text("−20 … 150 °C (sensitive)").tag(GainMode.high)
-                Text(verbatim: "0 … 550 °C").tag(GainMode.low)
+                Text(verbatim: "100 … 600 °C").tag(GainMode.low)
             }
 
             if model.connectionState == .streaming {
@@ -53,6 +53,16 @@ private struct CameraSection: View {
             Button("Shutter / Recalibrate (NUC)") { model.triggerShutter() }
                 .disabled(model.connectionState != .streaming)
                 .help("Briefly closes the shutter and recalibrates the sensor. Helps against streaks and drift.")
+
+            Toggle("Burn-in protection", isOn: $model.burnProtection)
+                .help("The camera closes its shutter when it sees the sun or a laser, to protect the sensor. The official app turns this on.")
+
+            Toggle("Automatic shutter", isOn: $model.automaticShutter)
+            if !model.automaticShutter {
+                Text("The camera no longer recalibrates itself every 90 seconds, so the image does not jump during a measurement. Readings drift slowly instead – trigger the shutter by hand before measuring. Switching reconnects the camera for a few seconds.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
         }
     }
 }
@@ -105,6 +115,13 @@ private struct DisplaySection: View {
             }
             .pickerStyle(.segmented)
             .help("Detail: the camera's own contrast-enhanced image – shows component outlines better. Measurements still use the temperatures.")
+
+            if model.imageMode == .detail {
+                // These change the camera's own image only, never the temperatures.
+                ForEach(ImageAdjustment.allCases) { adjustment in
+                    ImageAdjustmentSlider(adjustment: adjustment)
+                }
+            }
 
             Picker("Palette", selection: $model.palette) {
                 ForEach(Palette.selectable) { palette in
@@ -296,6 +313,39 @@ private struct MeasurementListSection: View {
 }
 
 // MARK: - Small building blocks
+
+/// A 0 … 100 slider for a setting of the camera's own grayscale image.
+private struct ImageAdjustmentSlider: View {
+    @Environment(AppModel.self) private var model
+    let adjustment: ImageAdjustment
+
+    private var title: LocalizedStringKey {
+        switch adjustment {
+        case .brightness: "Brightness"
+        case .contrast: "Contrast"
+        case .detailEnhancement: "Detail Enhancement"
+        case .noiseReduction: "Noise Reduction"
+        }
+    }
+
+    var body: some View {
+        let value = model.imageAdjustment(adjustment)
+        LabeledContent(title) {
+            HStack {
+                Slider(value: Binding(get: { Double(value ?? 50) },
+                                      set: { model.setImageAdjustment(adjustment, to: Int($0.rounded())) }),
+                       in: 0...100)
+                // Until it is changed, the camera keeps its own value, which cannot be read.
+                Group {
+                    if let value { Text(verbatim: "\(value)") } else { Text("Camera") }
+                }
+                .monospacedDigit()
+                .frame(width: 52, alignment: .trailing)
+            }
+        }
+        .help("Changes only the camera's own image in the Detail view, not the temperatures.")
+    }
+}
 
 /// A slider with a numeric field for a temperature in °C.
 private struct TemperatureSlider: View {

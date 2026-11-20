@@ -15,10 +15,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2771C34B5140E67C4FFABB29"
-               BuildableName = "ThermalInspector.app"
-               BlueprintName = "ThermalInspector"
-               ReferencedContainer = "container:ThermalInspector.xcodeproj">
+               BlueprintIdentifier = "50987482AD4F4DF9B28317D8"
+               BuildableName = "Thermal Inspector.app"
+               BlueprintName = "Thermal Inspector"
+               ReferencedContainer = "container:Thermal Inspector.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,10 +29,10 @@
             buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BE4C8988AFC1F05B42F77249"
-               BuildableName = "ThermalInspectorTests.xctest"
-               BlueprintName = "ThermalInspectorTests"
-               ReferencedContainer = "container:ThermalInspector.xcodeproj">
+               BlueprintIdentifier = "6F0E563E4CC41EC5CE58215F"
+               BuildableName = "Thermal Inspector Tests.xctest"
+               BlueprintName = "Thermal Inspector Tests"
+               ReferencedContainer = "container:Thermal Inspector.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -46,10 +46,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2771C34B5140E67C4FFABB29"
-            BuildableName = "ThermalInspector.app"
-            BlueprintName = "ThermalInspector"
-            ReferencedContainer = "container:ThermalInspector.xcodeproj">
+            BlueprintIdentifier = "50987482AD4F4DF9B28317D8"
+            BuildableName = "Thermal Inspector.app"
+            BlueprintName = "Thermal Inspector"
+            ReferencedContainer = "container:Thermal Inspector.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -58,10 +58,10 @@
             parallelizable = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BE4C8988AFC1F05B42F77249"
-               BuildableName = "ThermalInspectorTests.xctest"
-               BlueprintName = "ThermalInspectorTests"
-               ReferencedContainer = "container:ThermalInspector.xcodeproj">
+               BlueprintIdentifier = "6F0E563E4CC41EC5CE58215F"
+               BuildableName = "Thermal Inspector Tests.xctest"
+               BlueprintName = "Thermal Inspector Tests"
+               ReferencedContainer = "container:Thermal Inspector.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -82,10 +82,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2771C34B5140E67C4FFABB29"
-            BuildableName = "ThermalInspector.app"
-            BlueprintName = "ThermalInspector"
-            ReferencedContainer = "container:ThermalInspector.xcodeproj">
+            BlueprintIdentifier = "50987482AD4F4DF9B28317D8"
+            BuildableName = "Thermal Inspector.app"
+            BlueprintName = "Thermal Inspector"
+            ReferencedContainer = "container:Thermal Inspector.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -99,10 +99,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2771C34B5140E67C4FFABB29"
-            BuildableName = "ThermalInspector.app"
-            BlueprintName = "ThermalInspector"
-            ReferencedContainer = "container:ThermalInspector.xcodeproj">
+            BlueprintIdentifier = "50987482AD4F4DF9B28317D8"
+            BuildableName = "Thermal Inspector.app"
+            BlueprintName = "Thermal Inspector"
+            ReferencedContainer = "container:Thermal Inspector.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

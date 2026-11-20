@@ -5,7 +5,7 @@ set -euo pipefail
 cd "$(dirname "$0")"
 
 xcodegen generate
-xcodebuild -project ThermalInspector.xcodeproj -scheme ThermalInspector \
+xcodebuild -project "Thermal Inspector.xcodeproj" -scheme "Thermal Inspector" \
            -configuration Release -derivedDataPath build build | grep -E "error:|warning:|BUILD"
 
 echo
