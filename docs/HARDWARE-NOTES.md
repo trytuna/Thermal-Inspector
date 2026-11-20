@@ -71,6 +71,90 @@ productive**: the camera itself logs what it was asked to do.
   within 90 s. The app shows this correction as a drift indicator
   (`CalibrationMonitor`), skips the repeated frames and marks calibrations in the history.
 
+## iPhone / iPad (External Accessory)
+
+Tested 2026-11-19 on an iPhone 14 Pro via Apple's Lightning to USB 3 Camera
+Adapter, with a USB sniffer (Alex Taradov's USB Sniffer, high speed) between
+adapter and camera. `Tools/usb-capture-summary.py` turns such a capture into a
+readable list of transfers.
+
+* iOS lists the camera as an accessory with the protocol `com.thermalmaster.pios3`
+  (the name of USB interface 1). The iPhone itself talks iAP2 on interface 0
+  (bulk 0x84 IN / 0x05 OUT; authentication, identification – unencrypted).
+* When an app opens an `EASession`, iOS selects alternate setting 1 of interface 1.
+  Everything the app writes goes to bulk OUT 0x02, everything it reads comes from
+  bulk IN 0x81. When the session closes, iOS clears the endpoints and selects
+  alternate setting 0.
+* **Start/stop:** the app writes `00 01 01` to start the image stream and
+  `00 00 00` to stop it. The first frames arrive about 3.5 s after the start
+  packet. Without it the camera only streams if another app started it earlier –
+  this is why the image sometimes did not appear.
+* **Commands:** a 4-byte header, the 16-byte command, CRC-16/XMODEM of the
+  command (little-endian, same CRC as over USB):
+
+      01 fe 00 00 | 10 02 41 00 01 00 00 00 00 00 00 00 00 00 00 00 | 78 3d
+      seq  │       command (16 bytes)                                  CRC
+           └ fe for the first packet after connecting, ff afterwards
+
+  The camera answered the first one with `01 00 00 2c` (sequence number + status?)
+  on the stream endpoint. The command types differ from USB (`10 02` instead of
+  `01 2f`), parameter and value look alike (`41` / `1` = gain high over USB).
+* Commands recorded from the official app (sequence numbers left out):
+
+  | Action | Command (first 6 of 16 bytes) | Notes |
+  |---|---|---|
+  | Shutter / NUC | `10 02 43 00 00 00` | own type; USB uses `01 36 43 00` – verified, the camera clicks |
+  | Range "100–600 °C" | `01 2f 41 00 00 00` | **identical to USB gain low** |
+  | Range "−20–150 °C" | `01 2f 41 00 01 00` | **identical to USB gain high** |
+  | Range "automatic" | – | no command, decided by the app |
+  | Automatic shutter on / off | `10 02 41 00 01 00` / `10 02 41 00 00 00` | sent on every connect, before the start packet; toggling the setting sends nothing until the next connect – verified |
+  | High / low temperature alarm | – | no command, the app compares itself |
+  | X³IR ("x³" button, 512×384 "super resolution") | – | no command, and the camera keeps sending 256×192 frames at the same data rate – the upscaling happens in the app |
+  | Opening the settings | `01 01 81 00 0a 00 … 40 00`, `10 21 81 00 00 00 … 02 00` | read hardware version, read status |
+  | Range change (first) | `01 01 81 00 01 00 … 1e 00` | USB "read name", sent before the first gain change |
+  | While starting | `10 04 47 00 30 00` | image brightness = 48 (`basic_image_brightness_level_set`) |
+  | While starting | `10 04 4a 00 32 00` | global contrast = 50 (`basic_global_contrast_level_set`) |
+  | While starting | `10 03 4b 00 01 00` | sun / anti-burn protection on (`basic_sun_detect_switch_set`) |
+
+  Thermal Inspector sends shutter, gain and the automatic shutter this way
+  (`P3AccessoryProtocol`).
+* **Over USB the same command set works** (the `10 xx` commands too): on the Mac,
+  `10 02 41 00 <0/1>` as an 18-byte vendor command switches the automatic
+  shutter, and `10 02 81 … 01` (`basic_auto_ffc_status_get`, 1-byte answer) reads
+  it back – the camera reported exactly the value that was set (status 3 = OK).
+  Verified on the Mac (2½ minutes each): off – no click, the frame counter never
+  stood still for more than 1 frame; on – a click and a calibration with the
+  counter standing still for 19 frames, then jumping by 6.
+* **Image settings and burn-in protection** (brightness, contrast, noise
+  reduction, detail enhancement, `basic_sun_detect_switch_set`) work over USB as
+  well; see [AC020-COMMANDS.md](AC020-COMMANDS.md) for what was verified. Right
+  after plugging in, the camera sometimes answers a setting with status 4 – sending
+  it again a moment later works.
+* Single repeated frames (counter stands still for 1 frame) happen now and then
+  without any calibration. The app only counts a freeze of 5 frames or more as a
+  calibration.
+* **Measuring ranges:** high gain −20…150 °C, low gain 100…600 °C – as the official
+  app labels them. The manual only gives the total range (−20…600 °C, ±2 °C or
+  ±2 % of the reading). The "0…550 °C" in the Python code this project started
+  from has no source and does not match the manufacturer's numbers.
+* **Automatic shutter, verified by ear** (fresh replug, 3 minutes each, camera
+  still): with `10 02 41 00 01 00` the shutter clicked twice and the app marked both
+  calibrations; with `10 02 41 00 00 00` it never clicked. Over the iPhone the
+  frame counter stands still during a calibration just like over USB.
+* **Order matters:** send the automatic shutter command *before* the start packet
+  (and wait for the short answer), as the official app does. Sent after the start
+  packet to a freshly plugged-in camera, the stream stopped again after ~3 s and
+  the app had to reconnect over and over. The camera only takes this setting while
+  connecting, so Thermal Inspector reconnects when it is switched.
+* Answers to commands were not visible as separate transfers, except
+  `01 00 00 2c` after the very first command following a replug.
+* Sending the 18-byte USB command packets without the 4-byte header has no effect.
+* The meaning of the commands comes from InfiRay's command library in the official
+  Android app – see [AC020-COMMANDS.md](AC020-COMMANDS.md) for the whole table,
+  including commands that must never be sent.
+* After the camera had been opened and closed a few times without the stop packet,
+  it once stopped sending entirely until it was replugged.
+
 ## Known commands
 
 | Type | Param | Meaning |
